@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/finish_marginleft_l"
+    android:layout_marginRight="@dimen/finish_marginleft_l"
+    android:paddingTop="@dimen/finish_paddingtop">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.   Abcdeft"
+        android:textColor="@color/white_share"
+        android:textSize="@dimen/finish_tv_textsize_s" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="2000元"
+        android:textColor="@color/white_share"
+        android:textSize="@dimen/finish_tv_textsize_s" />
+</RelativeLayout>

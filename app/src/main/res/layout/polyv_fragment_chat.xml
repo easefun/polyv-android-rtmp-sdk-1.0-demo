@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:gravity="bottom"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_share"
+        android:clickable="true"
+        android:padding="@dimen/chat_padding">
+
+        <ImageView
+            android:id="@+id/iv_danmakuswitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/polyv_chat_iv_selected_danmaku" />
+
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/polyv_chat_tv_pressed_send"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/chat_padding"
+            android:paddingTop="@dimen/chat_padding_s"
+            android:paddingBottom="@dimen/chat_padding_s"
+            android:paddingLeft="@dimen/chat_padding"
+            android:paddingRight="@dimen/chat_padding"
+            android:text="发送"
+            android:textColor="@color/white_share" />
+
+        <com.easefun.polyvrtmp.view.PolyvLineEdittext
+            android:id="@+id/et_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/chat_padding"
+            android:layout_marginRight="@dimen/chat_padding"
+            android:layout_toLeftOf="@id/tv_send"
+            android:layout_toRightOf="@id/iv_danmakuswitch"
+            android:background="@null"
+            android:hint="我来说两句"
+            android:imeOptions="flagNoFullscreen"
+            android:paddingBottom="@dimen/chat_paddingbottom"
+            android:singleLine="true"
+            android:textSize="@dimen/chat_et_textsize"
+            app:line_color="@color/gray_main_d" />
+    </RelativeLayout>
+</LinearLayout>

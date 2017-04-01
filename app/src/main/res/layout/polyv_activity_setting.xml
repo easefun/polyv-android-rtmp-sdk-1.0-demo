@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_share">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_share">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/setting_marginbottom"
+                android:layout_marginTop="@dimen/setting_margintop"
+                android:src="@drawable/polyv_button_setting_pic"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_logoff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/polyv_setting_tv_pressed"
+                android:padding="@dimen/setting_padding"
+                android:text="注销"
+                android:textColor="@color/white_share"
+                android:textSize="@dimen/setting_tv_textsize" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/setting_textview"
+            android:text="活动标题" />
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_et_height"
+            android:background="@color/white_share"
+            android:gravity="top|left"
+            android:hint="标题字数请限制在20个中文字以内"
+            android:imeOptions="flagNoFullscreen"
+            android:inputType="text"
+            android:maxLength="20"
+            android:padding="@dimen/setting_paddingleft"
+            android:textColor="@color/gray_setting_d"
+            android:textColorHint="@color/gray_main_d"
+            android:textSize="@dimen/setting_tv_textsize" />
+
+        <TextView
+            style="@style/setting_textview"
+            android:text="直播logo"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_et_height"
+            android:background="@color/white_share"
+            android:padding="@dimen/setting_paddingleft"
+            android:visibility="gone">
+
+            <com.easefun.polyvrtmp.view.PolyvGrayImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="@dimen/setting_iv_width"
+                android:layout_height="@dimen/setting_iv_height"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter"
+                android:src="@drawable/polyv_setting_iv_pressed" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/setting_textview"
+            android:text="推流模式" />
+
+        <RelativeLayout
+            android:id="@+id/rl_portrait"
+            style="@style/setting_layout">
+
+            <TextView
+                style="@style/setting_textview_s"
+                android:text="竖屏模式" />
+
+            <ImageView
+                android:id="@+id/iv_portrait"
+                style="@style/setting_imageview" />
+        </RelativeLayout>
+
+        <View style="@style/setting_view" />
+
+        <RelativeLayout
+            android:id="@+id/rl_landscape"
+            style="@style/setting_layout">
+
+            <TextView
+                style="@style/setting_textview_s"
+                android:text="横屏模式" />
+
+            <ImageView
+                android:id="@+id/iv_landscape"
+                style="@style/setting_imageview" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/setting_textview"
+            android:text="推流清晰度" />
+
+        <RelativeLayout
+            android:id="@+id/rl_sc"
+            style="@style/setting_layout">
+
+            <TextView
+                style="@style/setting_textview_s"
+                android:text="超清" />
+
+            <ImageView
+                android:id="@+id/iv_sc"
+                style="@style/setting_imageview" />
+        </RelativeLayout>
+
+        <View style="@style/setting_view" />
+
+        <RelativeLayout
+            android:id="@+id/rl_hd"
+            style="@style/setting_layout">
+
+            <TextView
+                style="@style/setting_textview_s"
+                android:text="高清" />
+
+            <ImageView
+                android:id="@+id/iv_hd"
+                style="@style/setting_imageview" />
+        </RelativeLayout>
+
+        <View style="@style/setting_view" />
+
+        <RelativeLayout
+            android:id="@+id/rl_sd"
+            style="@style/setting_layout">
+
+            <TextView
+                style="@style/setting_textview_s"
+                android:text="标清" />
+
+            <ImageView
+                android:id="@+id/iv_sd"
+                style="@style/setting_imageview" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/setting_textview"
+            android:text="观看权限"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_public"
+                style="@style/setting_layout">
+
+                <TextView
+                    style="@style/setting_textview_s"
+                    android:text="公开" />
+
+                <ImageView
+                    android:id="@+id/iv_public"
+                    style="@style/setting_imageview" />
+            </RelativeLayout>
+
+            <View style="@style/setting_view" />
+
+            <RelativeLayout
+                android:id="@+id/rl_password"
+                style="@style/setting_layout">
+
+                <TextView
+                    style="@style/setting_textview_s"
+                    android:text="密码观看" />
+
+                <ImageView
+                    android:id="@+id/iv_password"
+                    style="@style/setting_imageview" />
+            </RelativeLayout>
+
+            <View style="@style/setting_view" />
+
+            <RelativeLayout
+                android:id="@+id/rl_pay"
+                style="@style/setting_layout">
+
+                <TextView
+                    style="@style/setting_textview_s"
+                    android:text="付费观看" />
+
+                <ImageView
+                    android:id="@+id/iv_pay"
+                    style="@style/setting_imageview" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_v_height"
+            android:background="@color/gray_share" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/setting_marginleft"
+                android:layout_marginRight="@dimen/setting_marginleft"
+                android:paddingTop="@dimen/setting_paddingtop_s">
+
+                <ImageView
+                    android:id="@+id/iv_wechat"
+                    style="@style/setting_imageview_s"
+                    android:src="@drawable/polyv_setting_iv_selected_wechat" />
+
+                <ImageView
+                    android:id="@+id/iv_moments"
+                    style="@style/setting_imageview_s"
+                    android:src="@drawable/polyv_setting_iv_selected_moments" />
+
+                <ImageView
+                    android:id="@+id/iv_weibo"
+                    style="@style/setting_imageview_s"
+                    android:src="@drawable/polyv_setting_iv_selected_weibo" />
+
+                <ImageView
+                    android:id="@+id/iv_qq"
+                    style="@style/setting_imageview_s"
+                    android:src="@drawable/polyv_setting_iv_selected_qq" />
+
+                <ImageView
+                    android:id="@+id/iv_qzone"
+                    style="@style/setting_imageview_s"
+                    android:src="@drawable/polyv_setting_iv_selected_qzone" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_start"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_bt_height"
+                android:layout_margin="@dimen/setting_paddingtop_s"
+                android:background="@drawable/polyv_setting_bt_pressed"
+                android:gravity="center"
+                android:text="开始直播"
+                android:textColor="@color/white_share"
+                android:textSize="@dimen/setting_tv_textsize" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

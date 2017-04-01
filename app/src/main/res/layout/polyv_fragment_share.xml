@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/translucence_share"
+    android:gravity="bottom|center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_botttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_share"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/share_margintop"
+            android:text="分享到"
+            android:textColor="@color/black_share_d"
+            android:textSize="@dimen/share_tv_textsize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/share_margintop_m"
+            android:layout_marginLeft="@dimen/share_marginleft_s"
+            android:layout_marginRight="@dimen/share_marginleft_s"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_wechat"
+                style="@style/share_layout">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/polyv_icon_wechat_enable" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/share_margintop_s"
+                    android:textSize="@dimen/share_tv_textsize_m"
+                    android:text="微信" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_moments"
+                style="@style/share_layout">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/polyv_icon_moments_enable" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/share_margintop_s"
+                    android:textSize="@dimen/share_tv_textsize_m"
+                    android:text="朋友圈" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_weibo"
+                style="@style/share_layout">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/polyv_icon_weibo_enable" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/share_margintop_s"
+                    android:textSize="@dimen/share_tv_textsize_m"
+                    android:text="微博" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_qq"
+                style="@style/share_layout">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/polyv_icon_qq_enable" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/share_margintop_s"
+                    android:textSize="@dimen/share_tv_textsize_m"
+                    android:text="QQ" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_qzone"
+                style="@style/share_layout">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/polyv_icon_qzone_enable" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/share_margintop_s"
+                    android:textSize="@dimen/share_tv_textsize_m"
+                    android:text="QQ空间" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/share_bt_height"
+            android:layout_marginLeft="@dimen/share_marginleft"
+            android:layout_marginRight="@dimen/share_marginleft"
+            android:layout_marginBottom="@dimen/share_margintop_m"
+            android:layout_marginTop="@dimen/share_margintop_m"
+            android:background="@drawable/polyv_share_bt_pressed"
+            android:text="取消"
+            android:textSize="@dimen/share_tv_textsize_m"
+            android:textColor="@color/blue_share" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">POLYV直播</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings related to login -->
+    <string name="title">POLYV登录</string>
+    <string name="prompt_account_id">直播频道ID</string>
+    <string name="prompt_password">直播密码</string>
+    <string name="action_sign_in">登录</string>
+</resources>

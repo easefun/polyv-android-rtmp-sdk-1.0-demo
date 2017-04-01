@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_margintop_m"
+        android:background="@drawable/polyv_bubble_bg"
+        android:text="简单测试一串字符串"
+        android:gravity="center_vertical"
+        android:textColor="@color/white_share"
+        android:textSize="@dimen/main_tv_textsize_m_l"
+        android:singleLine="true"
+        android:ellipsize="end"
+        />
+</LinearLayout>
