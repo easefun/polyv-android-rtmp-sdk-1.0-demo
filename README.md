@@ -25,5 +25,5 @@ rtmpSDK1.0demo是rtmpSDK1.0的demo示例Android studio项目工程，其中包�
 #### 关于分享
 分享功能只有界面，功能需要自行研发。
 ***
-#### 更多关于rtmpSDK1.0demo和rtmpSDK1.0的详细介绍请看[Wiki](https://github.com/easefun/polyv-android-live-sdk-2.0-demo/wiki)。
+#### 更多关于rtmpSDK1.0demo和rtmpSDK1.0的详细介绍请看[Wiki](https://github.com/easefun/polyv-android-rtmp-sdk-1.0-demo/wiki)。
 1.0.3版API文档请看[v1.0.3 API](http://demo.polyv.net/polyv/android/rtmp/sdk/1.0.3/api/index.html)。
