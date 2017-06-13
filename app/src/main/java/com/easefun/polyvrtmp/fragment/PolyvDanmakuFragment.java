@@ -193,7 +193,7 @@ public class PolyvDanmakuFragment extends Fragment {
     private SpannableStringBuilder createSpannable(CharSequence message, Drawable drawable) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         if (drawable == null) {
-            drawable = getResources().getDrawable(R.drawable.polyv_icon_xxhdpi);
+            drawable = getResources().getDrawable(R.drawable.polyv_default_logo);
             drawable.setBounds(0, 0, 0, (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
             drawable.setAlpha(0);
             RelativeImageSpan span = new RelativeImageSpan(drawable, RelativeImageSpan.ALIGN_CENTER);

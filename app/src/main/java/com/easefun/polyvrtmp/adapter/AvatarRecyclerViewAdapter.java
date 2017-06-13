@@ -8,14 +8,14 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.easefun.polyvrtmp.R;
-import com.easefun.polyvsdk.rtmp.chat.userinterface.entity.PolyvOnlineUsers;
+import com.easefun.polyvsdk.rtmp.core.userinterface.entity.PolyvUser;
 
 import java.util.List;
 
 public class AvatarRecyclerViewAdapter extends AbsRecyclerViewAdapter {
-    private List<PolyvOnlineUsers.User> urls;
+    private List<PolyvUser> urls;
 
-    public AvatarRecyclerViewAdapter(RecyclerView recyclerView, List<PolyvOnlineUsers.User> urls) {
+    public AvatarRecyclerViewAdapter(RecyclerView recyclerView, List<PolyvUser> urls) {
         super(recyclerView);
         this.urls = urls;
     }

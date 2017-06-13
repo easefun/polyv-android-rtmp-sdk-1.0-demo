@@ -255,7 +255,7 @@ public class PolyvMainActivity extends FragmentActivity {
                 alertDialog = builder.show();
                 // show之后才可以获取，否则获取为null
                 alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.gray_main_d));
-                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.blue_share));
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.color_custom));
             }
         });
 

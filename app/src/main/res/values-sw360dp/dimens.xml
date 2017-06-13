@@ -24,6 +24,15 @@
     <dimen name="share_ll_width">360dp</dimen>
     <dimen name="share_bt_height">40dp</dimen>
 
+    <!--3.4-->
+    <dimen name="login_translate_y_custom">-8.8dp</dimen>
+    <dimen name="login_marginbottom_custom">8.8dp</dimen>
+    <dimen name="login_margintop_custom">194dp</dimen>
+    <dimen name="login_margintop_custom_m">23.5dp</dimen>
+    <dimen name="login_margintop_custom_m_l">20dp</dimen>
+    <dimen name="login_paddingbottom_custom">7.6dp</dimen>
+    <dimen name="login_paddingleft_custom">8.6dp</dimen>
+    <dimen name="login_bt_height_custom">34.7dp</dimen>
     <!-- 56.3-15 /1.125-->
     <dimen name="login_margintop">36.7dp</dimen>
     <!-- 39.3-10 -->
@@ -83,6 +92,8 @@
     <dimen name="main_margintop_m">11.6dp</dimen>
     <dimen name="main_tv_textsize_m_l">13sp</dimen>
 
+    <dimen name="finish_margintop_s_custom">15.8dp</dimen>
+    <dimen name="finish_margintop_custom">33.8dp</dimen>
     <dimen name="finish_tv_textsize_m">24sp</dimen>
     <dimen name="finish_tv_textsize">32sp</dimen>
     <!-- 40.6/1.5-5 -->

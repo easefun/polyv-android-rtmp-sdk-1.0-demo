@@ -34,7 +34,7 @@
                 android:layout_width="@dimen/main_iv_width"
                 android:layout_height="@dimen/main_tv_height"
                 android:layout_centerVertical="true"
-                android:src="@drawable/polyv_icon_xxhdpi" />
+                android:src="@drawable/polyv_default_logo" />
 
             <ImageView
                 android:id="@+id/iv_close"

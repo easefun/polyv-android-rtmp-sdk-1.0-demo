@@ -29,6 +29,6 @@ public class PolyvLineEdittext extends EditText{
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // 画底线
-        canvas.drawLine(0, this.getHeight() - 1, this.getWidth() - 1, this.getHeight() - 1, mPaint);
+        canvas.drawLine(0, this.getHeight() - 1, this.getWidth() * 2, this.getHeight() - 1, mPaint);
     }
 }

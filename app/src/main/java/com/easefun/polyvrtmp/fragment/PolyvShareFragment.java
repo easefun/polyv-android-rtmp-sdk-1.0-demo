@@ -154,7 +154,7 @@ public class PolyvShareFragment extends Fragment implements View.OnClickListener
     }
 
     public static String watchUrl = "http://www.polyv.net";
-    public static String avatarUrl = "http://static.vlms.cn/images/2017/03/j0bzl3sk.png";
+    public static String avatarUrl = "http://live.polyv.net/assets/wimages/pc_images/logo.png";
     public static String title = "非常有价值的直播";
     public static String body = "正在直播，非常不错喔！快来看看吧！";
 

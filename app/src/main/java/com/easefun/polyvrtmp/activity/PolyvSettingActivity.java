@@ -24,9 +24,10 @@ import android.widget.Toast;
 
 import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.permission.PolyvPermission;
+import com.easefun.polyvrtmp.util.PolyvStatusBarUtil;
 import com.easefun.polyvrtmp.view.PolyvGrayImageView;
-import com.easefun.polyvsdk.rtmp.chat.userinterface.PolyvAuthTypeSetting;
-import com.easefun.polyvsdk.rtmp.chat.userinterface.PolyvTitleUpdate;
+import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvAuthTypeSetting;
+import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvTitleUpdate;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPDefinition;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPOrientation;
 import com.yalantis.ucrop.UCrop;
@@ -90,6 +91,12 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.polyv_activity_setting);
+        // edittext->adjustPan(否则部分手机会有延迟的白色背景)
+        try {
+            PolyvStatusBarUtil.setColor(this, getResources().getColor(R.color.color_custom), 0);
+        }catch (Exception e){
+            // ignore
+        }
         title = getIntent().getStringExtra("title");
         findId();
         initView();
@@ -155,8 +162,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         et_title.setText(title);
         et_title.setSelection(et_title.length());
 
+        resetDefinition(PolyvRTMPDefinition.CHAO_QING);
         resetMode(PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE);
-        resetDefinition(PolyvRTMPDefinition.GAO_QING);
         iv_public.setSelected(true);
 
         final String logoPath = getSharedPreferences(LOGO_NAME, MODE_PRIVATE).getString(LOGO_NAME, null);

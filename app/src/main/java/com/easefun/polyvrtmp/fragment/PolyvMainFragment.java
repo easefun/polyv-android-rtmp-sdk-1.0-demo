@@ -32,8 +32,10 @@ import com.easefun.polyvrtmp.adapter.ChatRecyclerViewAdapter;
 import com.easefun.polyvrtmp.util.PolyvBitmapUtils;
 import com.easefun.polyvsdk.rtmp.chat.PolyvChatManager;
 import com.easefun.polyvsdk.rtmp.chat.PolyvChatMessage;
-import com.easefun.polyvsdk.rtmp.chat.userinterface.PolyvIListUsers;
-import com.easefun.polyvsdk.rtmp.chat.userinterface.entity.PolyvOnlineUsers;
+import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvIListUsers;
+import com.easefun.polyvsdk.rtmp.core.userinterface.entity.PolyvOnlineUsers;
+import com.easefun.polyvsdk.rtmp.core.userinterface.entity.PolyvUser;
+import com.easefun.polyvsdk.rtmp.core.userinterface.listener.OnlineUpdateListener;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPView;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnTakePictureListener;
 
@@ -68,7 +70,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     // 聊天信息集合
     private LinkedList<PolyvChatMessage> ls_messages;
     // 头像实体集合
-    private ArrayList<PolyvOnlineUsers.User> avatar_urls;
+    private ArrayList<PolyvUser> avatar_urls;
     // 聊天室管理类
     private PolyvChatManager chatManager;
     // 昵称，频道id，用户id，用户头像地址
@@ -148,7 +150,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
                     break;
                 case UPDATEONLINE:
                     PolyvOnlineUsers onlineUsers = (PolyvOnlineUsers) msg.obj;
-                    List<PolyvOnlineUsers.User> users = onlineUsers.getUserList();
+                    List<PolyvUser> users = onlineUsers.getUserList();
                     int count = onlineUsers.getCount();
                     if (count > 0) {
                         int oldCount = avatar_urls.size();
@@ -368,7 +370,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     private void getOnlineNumber() {
         // 获取在线人数
         listUsersInterface = new PolyvIListUsers(this.channelId, this.userId, 1, 88888);
-        listUsersInterface.getOnlineUsers(6000, new PolyvIListUsers.UpdateListener() {
+        listUsersInterface.getOnlineUsers(6000, new OnlineUpdateListener() {
             @Override
             public void onUserList(PolyvOnlineUsers userList, int totalWatcher) {
                 PolyvMainFragment.this.totalWatcher = totalWatcher;

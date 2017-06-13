@@ -18,8 +18,9 @@ import android.widget.Toast;
 
 import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.fragment.PolyvShareFragment;
-import com.easefun.polyvsdk.rtmp.core.login.PolyvRTMPLoginErrorReason;
+import com.easefun.polyvrtmp.util.PolyvScreenUtils;
 import com.easefun.polyvsdk.rtmp.core.login.IPolyvRTMPLoginListener;
+import com.easefun.polyvsdk.rtmp.core.login.PolyvRTMPLoginErrorReason;
 import com.easefun.polyvsdk.rtmp.core.login.PolyvRTMPLoginVerify;
 
 import java.util.ArrayList;
@@ -120,6 +121,7 @@ public class PolyvLoginActivity extends Activity {
                     public void onSuccess(String[] preview_nickname_avatar) {
                         if (!progress.isShowing())
                             return;
+                        PolyvScreenUtils.setDecorVisible(PolyvLoginActivity.this);
                         progress.dismiss();
                         // 初始化分享配置
                         PolyvShareFragment.initShareConfig(preview_nickname_avatar[0], preview_nickname_avatar[2], null, null);
@@ -150,11 +152,9 @@ public class PolyvLoginActivity extends Activity {
                                 editor.commit();
                             }
                         } else {
-                            if (!sharedPreferences.contains(channelId)) {
-                                editor = sharedPreferences.edit();
-                                editor.putString(channelId, password);
-                                editor.commit();
-                            }
+                            editor = sharedPreferences.edit();
+                            editor.putString(channelId, password);
+                            editor.commit();
 
                             if (!sharedPreferences.contains(getCheckSelectKey(channelId))) {
                                 editor = sharedPreferences.edit();
@@ -176,6 +176,7 @@ public class PolyvLoginActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        PolyvScreenUtils.hideStatusBar(this);
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         Set<String> accountIdList = sharedPreferences.getStringSet(ACCOUNT_ID_LIST_KEY, new HashSet<String>());
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(accountIdList));

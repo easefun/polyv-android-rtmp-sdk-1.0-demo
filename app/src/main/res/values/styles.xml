@@ -96,4 +96,11 @@
         <item name="android:drawablePadding">@dimen/finish_paddingleft</item>
         <item name="android:textSize">@dimen/finish_tv_textsize_s</item>
     </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <!-- <item name="android:windowIsTranslucent">true</item> --> <!-- 透明背景不要了 -->
+    </style>
 </resources>
