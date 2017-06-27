@@ -138,56 +138,68 @@ public class PolyvMainActivity extends FragmentActivity {
         polyvRTMPView.setOnErrorListener(new IPolyvRTMPOnErrorListener() {
             @Override
             public void onError(PolyvRTMPErrorReason errorReason) {
+                String message = "";
                 switch (errorReason.getType()) {
                     case PolyvRTMPErrorReason.GET_NGB_PUSH_URL_EMPTY:
-                        Toast.makeText(PolyvMainActivity.this, "获取NGB推流地址为空，请重试", Toast.LENGTH_SHORT).show();
+                        message = "获取NGB推流地址为空，请重试 (error code " + PolyvRTMPErrorReason.GET_NGB_PUSH_URL_EMPTY + ")";
                         break;
                     case PolyvRTMPErrorReason.NETWORK_DENIED:
-                        Toast.makeText(PolyvMainActivity.this, "请连接网络", Toast.LENGTH_SHORT).show();
+                        message = "请连接网络 (error code " + PolyvRTMPErrorReason.NETWORK_DENIED + ")";
                         break;
                     case PolyvRTMPErrorReason.NOT_CAMERA:
-                        Toast.makeText(PolyvMainActivity.this, "没有摄像头，请更换设备", Toast.LENGTH_SHORT).show();
+                        message = "没有摄像头，请更换设备 (error coee " + PolyvRTMPErrorReason.NOT_CAMERA + ")";
                         break;
                     case PolyvRTMPErrorReason.AUDIO_AEC_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "不支持音频aec", Toast.LENGTH_SHORT).show();
+                        message = "不支持音频aec (error code " + PolyvRTMPErrorReason.AUDIO_AEC_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.AUDIO_CONFIGURATION_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "音频编解码器配置错误", Toast.LENGTH_SHORT).show();
+                        message = "音频编解码器配置错误 (error code " + PolyvRTMPErrorReason.AUDIO_CONFIGURATION_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.AUDIO_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "不能记录音频", Toast.LENGTH_SHORT).show();
+                        message = "不能记录音频 (error code " + PolyvRTMPErrorReason.AUDIO_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.AUDIO_TYPE_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "音频类型错误", Toast.LENGTH_SHORT).show();
+                        message = "音频类型错误 (error code " + PolyvRTMPErrorReason.AUDIO_TYPE_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.CAMERA_DISABLED:
-                        Toast.makeText(PolyvMainActivity.this, "摄相机被禁用", Toast.LENGTH_SHORT).show();
+                        message = "摄相机被禁用 (error code " + PolyvRTMPErrorReason.CAMERA_DISABLED + ")";
                         break;
                     case PolyvRTMPErrorReason.CAMERA_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "摄像机没有开启", Toast.LENGTH_SHORT).show();
+                        message = "摄像机没有开启 (error code " + PolyvRTMPErrorReason.CAMERA_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.CAMERA_NOT_SUPPORT:
-                        Toast.makeText(PolyvMainActivity.this, "摄相机不支持", Toast.LENGTH_SHORT).show();
+                        message = "摄相机不支持 (error code " + PolyvRTMPErrorReason.CAMERA_NOT_SUPPORT + ")";
                         break;
                     case PolyvRTMPErrorReason.CAMERA_OPEN_FAILED:
-                        Toast.makeText(PolyvMainActivity.this, "摄相机打开失败", Toast.LENGTH_SHORT).show();
+                        message = "摄相机打开失败 (error code " + PolyvRTMPErrorReason.CAMERA_OPEN_FAILED + ")";
                         break;
                     case PolyvRTMPErrorReason.SDK_VERSION_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "Android sdk 版本低于18（Android 4.3.1）", Toast.LENGTH_SHORT).show();
+                        message = "Android sdk 版本低于18（Android 4.3.1）(error code " + PolyvRTMPErrorReason.SDK_VERSION_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.VIDEO_CONFIGURATION_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "视频编解码器配置错误", Toast.LENGTH_SHORT).show();
+                        message = "视频编解码器配置错误 (error code " + PolyvRTMPErrorReason.VIDEO_CONFIGURATION_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.VIDEO_TYPE_ERROR:
-                        Toast.makeText(PolyvMainActivity.this, "视频类型错误", Toast.LENGTH_SHORT).show();
+                        message = "视频类型错误 (error code " + PolyvRTMPErrorReason.VIDEO_TYPE_ERROR + ")";
                         break;
                     case PolyvRTMPErrorReason.NOT_LOGIN:
-                        Toast.makeText(PolyvMainActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
+                        message = "请先登录 (error code " + PolyvRTMPErrorReason.NOT_LOGIN + ")";
                         break;
                     case PolyvRTMPErrorReason.RELOGIN_FAIL:
-                        Toast.makeText(PolyvMainActivity.this, "请重新登陆", Toast.LENGTH_SHORT).show();
+                        message = "请重新登陆 (error code " + PolyvRTMPErrorReason.RELOGIN_FAIL + ")";
                         break;
                 }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(PolyvMainActivity.this);
+                builder.setTitle("错误");
+                builder.setMessage(message);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
 
                 mainFragment.getTimeView().setText(PolyvDisplayUtils.getVideoDisplayTime(0));
                 handler.removeMessages(TIME_COUNT);
