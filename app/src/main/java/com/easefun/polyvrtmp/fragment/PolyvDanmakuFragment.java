@@ -48,8 +48,6 @@ public class PolyvDanmakuFragment extends Fragment {
     private BaseDanmakuParser mParser;
     // 弹幕配置器
     private DanmakuContext mContext;
-    // 图片请求监听
-    private GlideRequestListener glideRequestListener;
     private CropCircleTransformation cropCircleTransformation;
 
     @Nullable
@@ -123,16 +121,14 @@ public class PolyvDanmakuFragment extends Fragment {
             }
         }, mContext);
 
-        glideRequestListener = new GlideRequestListener();
         cropCircleTransformation = new CropCircleTransformation(getContext());
     }
 
     public class GlideRequestListener implements RequestListener<Object, GlideDrawable> {
         private CharSequence message;
 
-        public GlideRequestListener whit(CharSequence message) {
+        public GlideRequestListener(CharSequence message) {
             this.message = message;
-            return this;
         }
 
         @Override
@@ -165,7 +161,7 @@ public class PolyvDanmakuFragment extends Fragment {
      * @param url     图片地址
      */
     public void addDanmaku(CharSequence message, String url) {
-        Glide.with(this).load(url).bitmapTransform(cropCircleTransformation).listener(glideRequestListener.whit(message)).into((int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
+        Glide.with(this).load(url).bitmapTransform(cropCircleTransformation).listener(new GlideRequestListener(message)).into((int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
     }
 
     /**
@@ -175,7 +171,7 @@ public class PolyvDanmakuFragment extends Fragment {
      * @param id      图片的资源id
      */
     public void addDanmaku(CharSequence message, @DrawableRes int id) {
-        Glide.with(this).load(id).bitmapTransform(cropCircleTransformation).listener(glideRequestListener.whit(message)).into((int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
+        Glide.with(this).load(id).bitmapTransform(cropCircleTransformation).listener(new GlideRequestListener(message)).into((int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
     }
 
     private void addDanmaKuShowTextAndImage(CharSequence message, Drawable drawable) {
