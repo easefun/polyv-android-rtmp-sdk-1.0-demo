@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.fragment.PolyvMainFragment;
 import com.easefun.polyvrtmp.util.PolyvDisplayUtils;
+import com.easefun.polyvrtmp.util.PolyvErrorMessageUtils;
 import com.easefun.polyvrtmp.util.PolyvScreenUtils;
 import com.easefun.polyvsdk.rtmp.core.util.PolyvRTMPSDKUtil;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPDefinition;
@@ -29,6 +31,7 @@ import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPOrientation;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPErrorReason;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPView;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPRenderScreenSize;
+import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnCallbackSessionIdListener;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnCameraChangeListener;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnDisconnectionListener;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnErrorListener;
@@ -60,7 +63,7 @@ public class PolyvMainActivity extends FragmentActivity {
             switch (msg.what) {
                 case START:
                     iv_time.setVisibility(View.GONE);
-                    polyvRTMPView.capture();
+                    polyvRTMPView.capture(mChannelId, "appId", "appSecret");
                     break;
                 case TIME_COUNT:
                     long timeInMillies = System.currentTimeMillis() - startTime;
@@ -138,68 +141,22 @@ public class PolyvMainActivity extends FragmentActivity {
         polyvRTMPView.setOnErrorListener(new IPolyvRTMPOnErrorListener() {
             @Override
             public void onError(PolyvRTMPErrorReason errorReason) {
-                String message = "";
-                switch (errorReason.getType()) {
-                    case PolyvRTMPErrorReason.GET_NGB_PUSH_URL_EMPTY:
-                        message = "获取NGB推流地址为空，请重试 (error code " + PolyvRTMPErrorReason.GET_NGB_PUSH_URL_EMPTY + ")";
-                        break;
-                    case PolyvRTMPErrorReason.NETWORK_DENIED:
-                        message = "请连接网络 (error code " + PolyvRTMPErrorReason.NETWORK_DENIED + ")";
-                        break;
-                    case PolyvRTMPErrorReason.NOT_CAMERA:
-                        message = "没有摄像头，请更换设备 (error coee " + PolyvRTMPErrorReason.NOT_CAMERA + ")";
-                        break;
-                    case PolyvRTMPErrorReason.AUDIO_AEC_ERROR:
-                        message = "不支持音频aec (error code " + PolyvRTMPErrorReason.AUDIO_AEC_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.AUDIO_CONFIGURATION_ERROR:
-                        message = "音频编解码器配置错误 (error code " + PolyvRTMPErrorReason.AUDIO_CONFIGURATION_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.AUDIO_ERROR:
-                        message = "不能记录音频 (error code " + PolyvRTMPErrorReason.AUDIO_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.AUDIO_TYPE_ERROR:
-                        message = "音频类型错误 (error code " + PolyvRTMPErrorReason.AUDIO_TYPE_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.CAMERA_DISABLED:
-                        message = "摄相机被禁用 (error code " + PolyvRTMPErrorReason.CAMERA_DISABLED + ")";
-                        break;
-                    case PolyvRTMPErrorReason.CAMERA_ERROR:
-                        message = "摄像机没有开启 (error code " + PolyvRTMPErrorReason.CAMERA_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.CAMERA_NOT_SUPPORT:
-                        message = "摄相机不支持 (error code " + PolyvRTMPErrorReason.CAMERA_NOT_SUPPORT + ")";
-                        break;
-                    case PolyvRTMPErrorReason.CAMERA_OPEN_FAILED:
-                        message = "摄相机打开失败 (error code " + PolyvRTMPErrorReason.CAMERA_OPEN_FAILED + ")";
-                        break;
-                    case PolyvRTMPErrorReason.SDK_VERSION_ERROR:
-                        message = "Android sdk 版本低于18（Android 4.3.1）(error code " + PolyvRTMPErrorReason.SDK_VERSION_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.VIDEO_CONFIGURATION_ERROR:
-                        message = "视频编解码器配置错误 (error code " + PolyvRTMPErrorReason.VIDEO_CONFIGURATION_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.VIDEO_TYPE_ERROR:
-                        message = "视频类型错误 (error code " + PolyvRTMPErrorReason.VIDEO_TYPE_ERROR + ")";
-                        break;
-                    case PolyvRTMPErrorReason.NOT_LOGIN:
-                        message = "请先登录 (error code " + PolyvRTMPErrorReason.NOT_LOGIN + ")";
-                        break;
-                    case PolyvRTMPErrorReason.RELOGIN_FAIL:
-                        message = "请重新登陆 (error code " + PolyvRTMPErrorReason.RELOGIN_FAIL + ")";
-                        break;
+                if (errorReason.getType() == PolyvRTMPErrorReason.GET_NGB_PUSH_URL_EMPTY) {
+                    showRestartAlertDialog("提示", "推流失败，是否重试?(error code " + errorReason.getType() + ")", "确定", "取消");
+                } else {
+                    String message = PolyvErrorMessageUtils.getRTMPErrorMessage(errorReason.getType());
+                    message += "(error code " + errorReason.getType() + ")";
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PolyvMainActivity.this);
+                    builder.setTitle("错误");
+                    builder.setMessage(message);
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    builder.show();
                 }
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(PolyvMainActivity.this);
-                builder.setTitle("错误");
-                builder.setMessage(message);
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                });
-
-                builder.show();
 
                 mainFragment.getTimeView().setText(PolyvDisplayUtils.getVideoDisplayTime(0));
                 handler.removeMessages(TIME_COUNT);
@@ -235,11 +192,15 @@ public class PolyvMainActivity extends FragmentActivity {
             public void onDisconnection() {
                 handler.removeMessages(START);
                 handler.removeMessages(TIME_COUNT);
-                Toast.makeText(PolyvMainActivity.this, "断开连接", Toast.LENGTH_SHORT).show();
-                //断线增加网络改变回调事件
-                if (!isReceiver) {
-                    isReceiver = true;
-                    PolyvMainActivity.this.registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+                if (!PolyvRTMPSDKUtil.isOpenNetwork(getApplicationContext())) {
+                    //断线增加网络改变回调事件
+                    Toast.makeText(PolyvMainActivity.this, "断开连接", Toast.LENGTH_SHORT).show();
+                    if (!isReceiver) {
+                        isReceiver = true;
+                        PolyvMainActivity.this.registerReceiver(receiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+                    }
+                } else {
+                    showRestartAlertDialog("当前直播已停止", "网络情况不佳，请稍后重试", "重试", "忽略");
                 }
             }
         });
@@ -247,33 +208,55 @@ public class PolyvMainActivity extends FragmentActivity {
         polyvRTMPView.setOnPublishFailListener(new IPolyvRTMPOnPublishFailListener() {
             @Override
             public void onPublishFail() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(PolyvMainActivity.this);
-                builder.setTitle("提示");
-                builder.setMessage("推流失败，是否重试?");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        handler.sendEmptyMessage(START);
-                        dialog.dismiss();
-                    }
-                });
+                showRestartAlertDialog("提示", "推流失败，是否重试?", "确定", "取消");
+            }
+        });
 
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+        polyvRTMPView.setOnCallbackSessionIdListener(new IPolyvRTMPOnCallbackSessionIdListener() {
+            @Override
+            public void onSuccess(String sessionId) {
+                //TODO 如有需要，请根据自己的业务开发逻辑
+                Log.i("PolyvMainActivity", sessionId);
+//                Toast.makeText(PolyvMainActivity.this, "场次id：" + polyvRTMPView.getSessionId(), Toast.LENGTH_SHORT).show();
+            }
 
-                alertDialog = builder.show();
-                // show之后才可以获取，否则获取为null
-                alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.gray_main_d));
-                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.color_custom));
+            @Override
+            public void onFailure() {
+                //TODO 如有需要，请根据自己的业务开发逻辑
+//                Toast.makeText(PolyvMainActivity.this, "场次id获取失败", Toast.LENGTH_SHORT).show();
+//                showRestartAlertDialog("提示", "推流失败，是否重试?", "确定", "取消");
             }
         });
 
         polyvRTMPView.setConfiguration(mDefinition, mOrientation);
         polyvRTMPView.setRenderScreenSize(PolyvRTMPRenderScreenSize.AR_ASPECT_FIT_PARENT);
         polyvRTMPView.setEffect(new BeautyEffect(this));
+    }
+
+    private void showRestartAlertDialog(String title, String message, String positiveButtonText, String NegativeButtonText) {
+        if (alertDialog == null || !alertDialog.isShowing()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(PolyvMainActivity.this);
+            builder.setTitle(title);
+            builder.setMessage(message);
+            builder.setPositiveButton(positiveButtonText, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    handler.sendEmptyMessage(START);
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton(NegativeButtonText, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            alertDialog = builder.show();
+            // show之后才可以获取，否则获取为null
+            alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.gray_main_d));
+            alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.color_custom));
+        }
     }
 
     // 网络恢复，重连推流

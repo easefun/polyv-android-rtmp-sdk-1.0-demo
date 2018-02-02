@@ -28,8 +28,9 @@ rtmpSDK1.0demo是rtmpSDK1.0的demo示例Android studio项目工程，其中包�
 分享功能只有界面，功能需要自行研发。
 ***
 #### 更多关于rtmpSDK1.0demo和rtmpSDK1.0的详细介绍请看[Wiki](https://github.com/easefun/polyv-android-rtmp-sdk-1.0-demo/wiki)。
-1.0.3版API文档请看[v1.0.3 API](http://demo.polyv.net/polyv/android/rtmp/sdk/1.0.3/api/index.html)。<br/>
-1.0.4版API文档请看[v1.0.4 API](http://demo.polyv.net/polyv/android/rtmp/sdk/1.0.4/api/index.html)。<br/>
-1.0.5版API文档请看[v1.0.5 API](http://demo.polyv.net/polyv/android/rtmp/sdk/1.0.5/api/index.html)。<br/>
-1.0.6版API文档请看[v1.0.6 API](http://demo.polyv.net/polyv/android/rtmp/sdk/1.0.6/api/index.html)。<br/>
-1.0.7版API文档请看[v1.0.7 API](http://demo.polyv.net/polyv/android/rtmp/sdk/1.0.7/api/index.html)。
+1.0.3版API文档请看[v1.0.3 API](http://repo.polyv.net/android/rtmp/sdk/1.0.3/api/index.html)。<br/>
+1.0.4版API文档请看[v1.0.4 API](http://repo.polyv.net/android/rtmp/sdk/1.0.4/api/index.html)。<br/>
+1.0.5版API文档请看[v1.0.5 API](http://repo.polyv.net/android/rtmp/sdk/1.0.5/api/index.html)。<br/>
+1.0.6版API文档请看[v1.0.6 API](http://repo.polyv.net/android/rtmp/sdk/1.0.6/api/index.html)。<br/>
+1.0.7版API文档请看[v1.0.7 API](http://repo.polyv.net/android/rtmp/sdk/1.0.7/api/index.html)。<br/>
+1.0.8版API文档请看[v1.0.8 API](http://repo.polyv.net/android/rtmp/sdk/1.0.8/api/index.html)。
