@@ -2,7 +2,7 @@
 polyv-android-rtmp-sdk-1.0-demo
 ===
 [![build passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
-[![GitHub release](https://img.shields.io/badge/release-v1.0.7-blue.svg)](https://github.com/easefun/polyv-android-rtmp-sdk-1.0-demo/releases/tag/v1.0.7)
+[![GitHub release](https://img.shields.io/badge/release-v1.0.8-blue.svg)](https://github.com/easefun/polyv-android-rtmp-sdk-1.0-demo/releases/tag/v1.0.8)
 #### _polyv-android-rtmp-sdk-1.0_（以下简称**rtmpSDK1.0**）是什么？
 rtmpSDK1.0是Polyv为开发者用户提供的直播推流SDK ，是jar文件。易于集成，内部包含`直播推流` `聊天室` `弹幕` 功能。首先需要在[Polyv官网](http://www.polyv.net)注册账户并开通直播功能，然后集成rtmpSDK1.0到你的项目中。
 #### _polyv-android-rtmp-sdk-1.0-demo_（以下简称**rtmpSDK1.0demo**）是什么？
