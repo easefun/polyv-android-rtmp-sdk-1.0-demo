@@ -46,9 +46,9 @@ public class PolyvFinishActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (PolyvScreenUtils.isLandscape(this))
-            setContentView(R.layout.polyv_activity_finish_land);
+            setContentView(R.layout.polyv_rtmp_activity_finish_land);
         else
-            setContentView(R.layout.polyv_activity_finish_port);
+            setContentView(R.layout.polyv_rtmp_activity_finish_port);
         time = getIntent().getStringExtra("time");
         totalWatcher = getIntent().getIntExtra("totalWatcher", 0);
         bitmapPath = getIntent().getStringExtra("bitmapPath");

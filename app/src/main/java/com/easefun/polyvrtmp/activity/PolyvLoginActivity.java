@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.fragment.PolyvShareFragment;
 import com.easefun.polyvrtmp.util.PolyvScreenUtils;
+import com.easefun.polyvsdk.rtmp.chat.PolyvChatManager;
 import com.easefun.polyvsdk.rtmp.core.login.IPolyvRTMPLoginListener;
 import com.easefun.polyvsdk.rtmp.core.login.PolyvRTMPLoginErrorReason;
 import com.easefun.polyvsdk.rtmp.core.login.PolyvRTMPLoginVerify;
@@ -43,7 +44,7 @@ public class PolyvLoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.polyv_activity_login);
+        setContentView(R.layout.polyv_rtmp_activity_login);
 
         channelIdACTV = (AutoCompleteTextView) findViewById(R.id.channel_id);
         channelIdACTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,13 +124,16 @@ public class PolyvLoginActivity extends Activity {
                             return;
                         PolyvScreenUtils.setDecorVisible(PolyvLoginActivity.this);
                         progress.dismiss();
+
+                        //登陆成功初始化聊天室配置
+                        PolyvChatManager.initConfig(PolyvRTMPLoginVerify.getPolyvPublishVO().getAppId(), PolyvRTMPLoginVerify.getPolyvPublishVO().getAppSecret());
                         // 初始化分享配置
                         PolyvShareFragment.initShareConfig(preview_nickname_avatar[0], preview_nickname_avatar[2], null, null);
 
                         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString(LAST_ACCOUNT_ID_KEY, channelId);
-                        editor.commit();
+                        editor.apply();
 
                         Set<String> accountIdList = sharedPreferences.getStringSet(ACCOUNT_ID_LIST_KEY, new HashSet<String>());
                         if (!accountIdList.contains(channelId)) {

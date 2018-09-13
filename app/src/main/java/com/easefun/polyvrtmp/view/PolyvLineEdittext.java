@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.easefun.polyvrtmp.R;
 
-public class PolyvLineEdittext extends EditText{
+public class PolyvLineEdittext extends EditText {
     private Paint mPaint;
 
     public PolyvLineEdittext(Context context, AttributeSet attrs) {
@@ -19,8 +19,8 @@ public class PolyvLineEdittext extends EditText{
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
         // 你可以根据自己的具体需要在此处对画笔做更多个性化设置
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PolyvLineEdittext, 0, 0);
-        mPaint.setColor(a.getColor(R.styleable.PolyvLineEdittext_line_color, Color.WHITE));
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.polyv_rtmp_line_edit_text, 0, 0);
+        mPaint.setColor(a.getColor(R.styleable.polyv_rtmp_line_edit_text_line_color, Color.WHITE));
         a.recycle();
 
     }

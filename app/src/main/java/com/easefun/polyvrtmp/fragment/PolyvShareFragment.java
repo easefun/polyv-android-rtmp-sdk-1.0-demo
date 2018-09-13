@@ -34,7 +34,7 @@ public class PolyvShareFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (view == null)
-            view = inflater.inflate(R.layout.polyv_fragment_share, container, false);
+            view = inflater.inflate(R.layout.polyv_rtmp_fragment_share, container, false);
         return view;
     }
 
@@ -54,7 +54,7 @@ public class PolyvShareFragment extends Fragment implements View.OnClickListener
     private void resetLayout() {
         if (PolyvScreenUtils.isLandscape(getActivity())) {
             ll_parent.setGravity(Gravity.CENTER);
-            ll_bottom.setLayoutParams(new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.share_ll_width), LinearLayout.LayoutParams.WRAP_CONTENT));
+            ll_bottom.setLayoutParams(new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.polyv_rtmp_share_ll_width), LinearLayout.LayoutParams.WRAP_CONTENT));
         } else {
             ll_parent.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
             ll_bottom.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -114,8 +114,8 @@ public class PolyvShareFragment extends Fragment implements View.OnClickListener
         bt_cancel.setOnClickListener(this);
         ll_parent.setOnClickListener(this);
 
-        startAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.polyv_share_expand);
-        stopAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.polyv_share_collapse);
+        startAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.polyv_rtmp_share_expand);
+        stopAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.polyv_rtmp_share_collapse);
         stopAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

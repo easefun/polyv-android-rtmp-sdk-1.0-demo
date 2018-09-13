@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="polyv_rtmp_line_edit_text">
+        <attr name="line_color" format="color"></attr>
+    </declare-styleable>
+</resources>

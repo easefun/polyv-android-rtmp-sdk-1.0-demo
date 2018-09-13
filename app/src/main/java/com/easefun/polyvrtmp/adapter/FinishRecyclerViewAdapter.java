@@ -26,7 +26,7 @@ public class FinishRecyclerViewAdapter extends AbsRecyclerViewAdapter {
     @Override
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.polyv_recyclerview_finish_item, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.polyv_rtmp_recyclerview_item_finish, parent, false));
     }
 
     @Override

@@ -233,7 +233,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (view == null)
-            view = inflater.inflate(R.layout.polyv_fragment_main, container, false);
+            view = inflater.inflate(R.layout.polyv_rtmp_fragment_main, container, false);
         return view;
     }
 
@@ -298,7 +298,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
         iv_switchcamera.setOnClickListener(this);
         iv_flashlight.setOnClickListener(this);
         Glide.with(this).load(avatarUrl = getActivity().getIntent().getStringExtra("avatarUrl")).dontAnimate()
-                .placeholder(R.drawable.polyv_default_logo).error(R.drawable.polyv_default_logo).into(iv_logo);
+                .placeholder(R.drawable.polyv_rtmp_default_logo).error(R.drawable.polyv_rtmp_default_logo).into(iv_logo);
         tv_online.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {

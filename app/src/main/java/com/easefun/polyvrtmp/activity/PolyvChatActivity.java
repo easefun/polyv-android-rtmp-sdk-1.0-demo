@@ -30,7 +30,7 @@ public class PolyvChatActivity extends Activity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.polyv_fragment_chat);
+        setContentView(R.layout.polyv_rtmp_fragment_chat);
         findId();
         initView();
     }

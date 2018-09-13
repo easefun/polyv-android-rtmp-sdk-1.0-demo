@@ -90,10 +90,10 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.polyv_activity_setting);
+        setContentView(R.layout.polyv_rtmp_activity_setting);
         // edittext->adjustPan(否则部分手机会有延迟的白色背景)
         try {
-            PolyvStatusBarUtil.setColor(this, getResources().getColor(R.color.color_custom), 0);
+            PolyvStatusBarUtil.setColor(this, getResources().getColor(R.color.polyv_rtmp_color_custom), 0);
         }catch (Exception e){
             // ignore
         }
@@ -184,7 +184,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
                             public void onClick(DialogInterface dialog, int which) {
                                 getSharedPreferences(LOGO_NAME, MODE_PRIVATE).edit().remove(LOGO_NAME).commit();
                                 new File(logoPath).delete();
-                                iv_logo.setImageResource(R.drawable.polyv_setting_iv_pressed);
+                                iv_logo.setImageResource(R.drawable.polyv_rtmp_setting_iv_pressed);
                                 iv_logo.changeDrawColor(false);
                                 iv_logo.setOnLongClickListener(null);
                             }

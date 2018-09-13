@@ -29,7 +29,7 @@ public class PolyvAlertDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).setCustomTitle(LayoutInflater.from(getActivity()).inflate(R.layout.polyv_fragment_dialog_title, null)).setMessage("你确定要结束直播吗?")
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).setCustomTitle(LayoutInflater.from(getActivity()).inflate(R.layout.polyv_rtmp_fragment_dialog_title, null)).setMessage("你确定要结束直播吗?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (dialogFragmentClick != null)
@@ -43,8 +43,8 @@ public class PolyvAlertDialogFragment extends DialogFragment {
                 }).create();
         alertDialog.show();
         // show之后才可以获取，否则获取为null
-        alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.gray_main_d));
-        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.color_custom));
+        alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.polyv_rtmp_gray_main_d));
+        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.polyv_rtmp_color_custom));
         return alertDialog;
     }
 }

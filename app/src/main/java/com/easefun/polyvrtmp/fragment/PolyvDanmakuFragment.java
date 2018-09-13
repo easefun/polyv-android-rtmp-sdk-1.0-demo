@@ -54,7 +54,7 @@ public class PolyvDanmakuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (view == null)
-            view = inflater.inflate(R.layout.polyv_fragment_danmaku, container, false);
+            view = inflater.inflate(R.layout.polyv_rtmp_fragment_danmaku, container, false);
         return view;
     }
 
@@ -78,10 +78,10 @@ public class PolyvDanmakuFragment extends Fragment {
         mContext = DanmakuContext.create();
         mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_NONE).setDuplicateMergingEnabled(false)
                 .setScrollSpeedFactor(1.2f).setScaleTextSize(1.0f)
-                .setCacheStuffer(new BackgroundCacheStuffer(getResources().getColor(R.color.translucence_share),
-                        getResources().getDimension(R.dimen.danmaku_iv_radius),
-                        getResources().getDimension(R.dimen.danmaku_padding) + getResources().getDimension(R.dimen.danmaku_offset),
-                        0 + getResources().getDimension(R.dimen.danmaku_offset)), new BaseCacheStuffer.Proxy() {
+                .setCacheStuffer(new BackgroundCacheStuffer(getResources().getColor(R.color.polyv_rtmp_translucence_share),
+                        getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_radius),
+                        getResources().getDimension(R.dimen.polyv_rtmp_danmaku_padding) + getResources().getDimension(R.dimen.polyv_rtmp_danmaku_offset),
+                        0 + getResources().getDimension(R.dimen.polyv_rtmp_danmaku_offset)), new BaseCacheStuffer.Proxy() {
                     @Override
                     public void prepareDrawing(BaseDanmaku danmaku, boolean fromWorkerThread) {
                     }
@@ -139,7 +139,7 @@ public class PolyvDanmakuFragment extends Fragment {
 
         @Override
         public boolean onResourceReady(GlideDrawable resource, Object model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-            resource.setBounds(0, 0, (int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
+            resource.setBounds(0, 0, (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound), (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound));
             addDanmaKuShowTextAndImage(message, resource);
             return true;
         }
@@ -161,7 +161,7 @@ public class PolyvDanmakuFragment extends Fragment {
      * @param url     图片地址
      */
     public void addDanmaku(CharSequence message, String url) {
-        Glide.with(this).load(url).bitmapTransform(cropCircleTransformation).listener(new GlideRequestListener(message)).into((int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
+        Glide.with(this).load(url).bitmapTransform(cropCircleTransformation).listener(new GlideRequestListener(message)).into((int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound), (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound));
     }
 
     /**
@@ -171,7 +171,7 @@ public class PolyvDanmakuFragment extends Fragment {
      * @param id      图片的资源id
      */
     public void addDanmaku(CharSequence message, @DrawableRes int id) {
-        Glide.with(this).load(id).bitmapTransform(cropCircleTransformation).listener(new GlideRequestListener(message)).into((int) getResources().getDimension(R.dimen.danmaku_iv_bound), (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
+        Glide.with(this).load(id).bitmapTransform(cropCircleTransformation).listener(new GlideRequestListener(message)).into((int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound), (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound));
     }
 
     private void addDanmaKuShowTextAndImage(CharSequence message, Drawable drawable) {
@@ -181,7 +181,7 @@ public class PolyvDanmakuFragment extends Fragment {
         danmaku.padding = 0;
         danmaku.priority = 1; // 一定会显示, 一般用于本机发送的弹幕
         danmaku.setTime(mDanmakuView.getCurrentTime() + 100);
-        danmaku.textSize = getResources().getDimension(R.dimen.danmaku_tv_textsize);
+        danmaku.textSize = getResources().getDimension(R.dimen.polyv_rtmp_danmaku_tv_textsize);
         danmaku.textColor = Color.WHITE;
         mDanmakuView.addDanmaku(danmaku);
     }
@@ -189,14 +189,14 @@ public class PolyvDanmakuFragment extends Fragment {
     private SpannableStringBuilder createSpannable(CharSequence message, Drawable drawable) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         if (drawable == null) {
-            drawable = getResources().getDrawable(R.drawable.polyv_default_logo);
-            drawable.setBounds(0, 0, 0, (int) getResources().getDimension(R.dimen.danmaku_iv_bound));
+            drawable = getResources().getDrawable(R.drawable.polyv_rtmp_default_logo);
+            drawable.setBounds(0, 0, 0, (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_iv_bound));
             drawable.setAlpha(0);
             RelativeImageSpan span = new RelativeImageSpan(drawable, RelativeImageSpan.ALIGN_CENTER);
             spannableStringBuilder.setSpan(span, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableStringBuilder.append("   " + message + "   ");
         } else {
-            RelativeImageSpan span = new RelativeImageSpan(drawable, RelativeImageSpan.ALIGN_CENTER, (int) getResources().getDimension(R.dimen.danmaku_paddingleft), (int) getResources().getDimension(R.dimen.danmaku_paddingright));// ImageSpan.ALIGN_BOTTOM);
+            RelativeImageSpan span = new RelativeImageSpan(drawable, RelativeImageSpan.ALIGN_CENTER, (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_paddingleft), (int) getResources().getDimension(R.dimen.polyv_rtmp_danmaku_paddingright));// ImageSpan.ALIGN_BOTTOM);
             spannableStringBuilder.setSpan(span, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spannableStringBuilder.append(message + "   ");
         }

@@ -85,8 +85,12 @@
 -ignorewarnings
 #保证是独立的jar,没有任何项目引用,如果不写就会认为我们所有的代码是无用的,从而把所有的代码压缩掉,导出一个空的jar
 -dontshrink
-#保护泛型
--keepattributes Signature
+#保护内部类,泛型
+-keepattributes Exceptions, InnerClasses, Signature, Deprecated, SourceFile, LineNumberTable, *Annotation*, EnclosingMethod
+#指定被保护的方法的参数类型和参数名不被混淆
+-keepparameternames
 
 -dontwarn okio.**
+-dontwarn com.tencent.bugly.**
 -keep class okio.**
+-keep public class com.tencent.bugly.**{*;}

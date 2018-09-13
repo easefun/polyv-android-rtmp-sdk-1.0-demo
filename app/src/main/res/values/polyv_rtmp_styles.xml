@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="polyv_rtmp_share_activity" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="polyv_rtmp_share_layout">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/polyv_rtmp_share_ly_pressed</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_textview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/polyv_rtmp_setting_paddingtop</item>
+        <item name="android:paddingBottom">@dimen/polyv_rtmp_setting_paddingbottom</item>
+        <item name="android:paddingLeft">@dimen/polyv_rtmp_setting_paddingleft</item>
+        <item name="android:background">@color/polyv_rtmp_gray_setting_s</item>
+        <item name="android:textSize">@dimen/polyv_rtmp_setting_tv_textsize_s</item>
+        <item name="android:textColor">@color/polyv_rtmp_gray_setting</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/polyv_rtmp_setting_paddingleft</item>
+        <item name="android:paddingTop">@dimen/polyv_rtmp_setting_paddingleft</item>
+        <item name="android:paddingBottom">@dimen/polyv_rtmp_setting_paddingleft</item>
+        <item name="android:paddingRight">@dimen/polyv_rtmp_setting_paddingright</item>
+        <item name="android:background">@drawable/polyv_rtmp_setting_ly_pressed</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_textview_s">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">@dimen/polyv_rtmp_setting_tv_textsize</item>
+        <item name="android:textColor">@color/polyv_rtmp_black_setting_s</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_imageview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/polyv_rtmp_setting_iv_selected</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/polyv_rtmp_gray_share</item>
+        <item name="android:layout_marginLeft">@dimen/polyv_rtmp_setting_paddingleft</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_imageview_s">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="polyv_rtmp_setting_activity" parent="AppTheme">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="polyv_rtmp_finish_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignLeft">@id/tv_finish</item>
+        <item name="android:textColor">@color/polyv_rtmp_white_share</item>
+        <item name="android:drawablePadding">@dimen/polyv_rtmp_finish_paddingleft</item>
+        <item name="android:textSize">@dimen/polyv_rtmp_finish_tv_textsize_s</item>
+    </style>
+
+    <style name="polyv_rtmp_SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <!-- <item name="android:windowIsTranslucent">true</item> --> <!-- 透明背景不要了 -->
+    </style>
+</resources>

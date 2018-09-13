@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="polyv_rtmp_chat_tv_textsize">11.9sp</dimen>
+    <dimen name="polyv_rtmp_chat_et_textsize">13.3sp</dimen>
+    <dimen name="polyv_rtmp_chat_padding">6.5dp</dimen>
+    <dimen name="polyv_rtmp_chat_padding_s">4.5dp</dimen>
+    <dimen name="polyv_rtmp_chat_paddingbottom">2.2dp</dimen>
+
+    <dimen name="polyv_rtmp_danmaku_iv_bound">23.7dp</dimen>
+    <dimen name="polyv_rtmp_danmaku_iv_radius">14.8dp</dimen>
+    <dimen name="polyv_rtmp_danmaku_paddingleft">1dp</dimen>
+    <dimen name="polyv_rtmp_danmaku_paddingright">5.3dp</dimen>
+    <dimen name="polyv_rtmp_danmaku_tv_textsize">11.9sp</dimen>
+    <dimen name="polyv_rtmp_danmaku_padding">2.9dp</dimen>
+    <dimen name="polyv_rtmp_danmaku_offset">5.3dp</dimen>
+
+    <dimen name="polyv_rtmp_share_margintop">13.2dp</dimen>
+    <dimen name="polyv_rtmp_share_margintop_m">17.5dp</dimen>
+    <dimen name="polyv_rtmp_share_margintop_s">5dp</dimen>
+    <dimen name="polyv_rtmp_share_tv_textsize">19sp</dimen>
+    <dimen name="polyv_rtmp_share_tv_textsize_m">14.2sp</dimen>
+    <dimen name="polyv_rtmp_share_marginleft">20.7dp</dimen>
+    <dimen name="polyv_rtmp_share_marginleft_s">7.4dp</dimen>
+    <dimen name="polyv_rtmp_share_ll_width">320dp</dimen>
+    <dimen name="polyv_rtmp_share_bt_height">30dp</dimen>
+
+    <!--4.1-->
+    <dimen name="polyv_rtmp_login_translate_y_custom">-7.3dp</dimen>
+    <dimen name="polyv_rtmp_login_marginbottom_custom">7.3dp</dimen>
+    <dimen name="polyv_rtmp_login_margintop_custom">161dp</dimen>
+    <dimen name="polyv_rtmp_login_margintop_custom_m">19.5dp</dimen>
+    <dimen name="polyv_rtmp_login_margintop_custom_m_l">16.5dp</dimen>
+    <dimen name="polyv_rtmp_login_paddingbottom_custom">6.3dp</dimen>
+    <dimen name="polyv_rtmp_login_paddingleft_custom">7.7dp</dimen>
+    <dimen name="polyv_rtmp_login_bt_height_custom">28.7dp</dimen>
+    <!-- 42.2-15 -->
+    <dimen name="polyv_rtmp_login_margintop">27.2dp</dimen>
+    <!-- 29.5-10 -->
+    <dimen name="polyv_rtmp_login_margintop_m">19.5dp</dimen>
+    <!-- 28.2-10 -->
+    <dimen name="polyv_rtmp_login_margintop_m_m">18.2dp</dimen>
+    <dimen name="polyv_rtmp_login_margintop_s">24.2dp</dimen>
+    <!-- 22-5 -->
+    <dimen name="polyv_rtmp_login_margintop_s_m">17dp</dimen>
+    <!-- 20-5 -->
+    <dimen name="polyv_rtmp_login_margintop_s_s">15dp</dimen>
+    <!-- 20-5-3 -->
+    <dimen name="polyv_rtmp_login_margintop_s_s_l">12dp</dimen>
+    <dimen name="polyv_rtmp_login_marginleft_l">44.4dp</dimen>
+    <dimen name="polyv_rtmp_login_marginleft">20.7dp</dimen>
+    <dimen name="polyv_rtmp_login_padding">6.5dp</dimen>
+    <dimen name="polyv_rtmp_login_et_textsize">13.0sp</dimen>
+    <dimen name="polyv_rtmp_login_tv_textsize">14.2sp</dimen>
+    <dimen name="polyv_rtmp_login_tv_textsize_s">11.2sp</dimen>
+    <dimen name="polyv_rtmp_login_bt_height">30dp</dimen>
+    <dimen name="polyv_rtmp_login_paddingbottom">2.2dp</dimen>
+
+    <dimen name="polyv_rtmp_setting_margintop">43.5dp</dimen>
+    <dimen name="polyv_rtmp_setting_marginleft">7.4dp</dimen>
+    <dimen name="polyv_rtmp_setting_marginbottom">42dp</dimen>
+    <dimen name="polyv_rtmp_setting_padding">13.3dp</dimen>
+    <dimen name="polyv_rtmp_setting_tv_textsize">14.2sp</dimen>
+    <dimen name="polyv_rtmp_setting_tv_textsize_s">11.8sp</dimen>
+    <dimen name="polyv_rtmp_setting_paddingtop">21.2dp</dimen>
+    <dimen name="polyv_rtmp_setting_paddingtop_s">15.7dp</dimen>
+    <dimen name="polyv_rtmp_setting_paddingbottom">10dp</dimen>
+    <dimen name="polyv_rtmp_setting_paddingleft">11.8dp</dimen>
+    <dimen name="polyv_rtmp_setting_paddingright">17.7dp</dimen>
+    <!-- +6 -->
+    <dimen name="polyv_rtmp_setting_et_height">66dp</dimen>
+    <dimen name="polyv_rtmp_setting_v_height">18.7dp</dimen>
+    <dimen name="polyv_rtmp_setting_bt_height">30dp</dimen>
+    <!-- square wi = he -->
+    <dimen name="polyv_rtmp_setting_iv_height">40dp</dimen>
+    <dimen name="polyv_rtmp_setting_iv_width">40dp</dimen>
+
+    <dimen name="polyv_rtmp_main_margintop">14dp</dimen>
+    <dimen name="polyv_rtmp_main_marginleft">16.6dp</dimen>
+    <dimen name="polyv_rtmp_main_marginbottom">17.5dp</dimen>
+    <dimen name="polyv_rtmp_main_tv_width">124.4dp</dimen>
+    <dimen name="polyv_rtmp_main_tv_height">29.5dp</dimen>
+    <dimen name="polyv_rtmp_main_iv_width">35dp</dimen>
+    <dimen name="polyv_rtmp_main_paddingleft">44.7dp</dimen>
+    <!-- -2 -->
+    <dimen name="polyv_rtmp_main_tv_textsize">10.4sp</dimen>
+    <dimen name="polyv_rtmp_main_rv_width">237dp</dimen>
+    <dimen name="polyv_rtmp_main_rv_height">25dp</dimen>
+    <dimen name="polyv_rtmp_main_iv_width_m">29.6dp</dimen>
+    <dimen name="polyv_rtmp_main_marginright">8.9dp</dimen>
+    <dimen name="polyv_rtmp_main_tv_textsize_m">11.8sp</dimen>
+    <dimen name="polyv_rtmp_main_marginbottom_s">7.5dp</dimen>
+    <dimen name="polyv_rtmp_main_marginright_l">17.7dp</dimen>
+    <!-- -6.5 -->
+    <dimen name="polyv_rtmp_main_marginbottom_m">8.5dp</dimen>
+    <!-- -1.5 -->
+    <dimen name="polyv_rtmp_main_margintop_m">7.2dp</dimen>
+    <dimen name="polyv_rtmp_main_tv_textsize_m_l">11.5sp</dimen>
+
+    <dimen name="polyv_rtmp_finish_margintop_s_custom">17dp</dimen>
+    <dimen name="polyv_rtmp_finish_margintop_custom">28.6dp</dimen>
+    <dimen name="polyv_rtmp_finish_tv_textsize_m">21.3sp</dimen>
+    <dimen name="polyv_rtmp_finish_tv_textsize">28.4sp</dimen>
+    <!-- 30.5/1.5 -->
+    <dimen name="polyv_rtmp_finish_margintop_l">20.3dp</dimen>
+    <!-- 19/1.5 -->
+    <dimen name="polyv_rtmp_finish_margintop">12.6dp</dimen>
+    <!-- -1 -->
+    <dimen name="polyv_rtmp_finish_margintop_s">9dp</dimen>
+    <!-- 10-1.7 -->
+    <dimen name="polyv_rtmp_finish_margintop_s_l">7.3dp</dimen>
+    <dimen name="polyv_rtmp_finish_paddingleft">11.8dp</dimen>
+    <dimen name="polyv_rtmp_finish_marginleft">23.6dp</dimen>
+    <!-- +13 -->
+    <dimen name="polyv_rtmp_finish_marginleft_l_m">36.6dp</dimen>
+    <dimen name="polyv_rtmp_finish_tv_textsize_s">14.2sp</dimen>
+    <dimen name="polyv_rtmp_finish_v_width">44.4dp</dimen>
+    <dimen name="polyv_rtmp_finish_bt_height">30dp</dimen>
+    <dimen name="polyv_rtmp_finish_marginleft_m">20.7dp</dimen>
+    <dimen name="polyv_rtmp_finish_marginbottom">15dp</dimen>
+    <dimen name="polyv_rtmp_finish_marginbottom_l">7.5dp</dimen>
+    <!-- +8 -->
+    <dimen name="polyv_rtmp_finish_marginleft_l">43.5dp</dimen>
+    <dimen name="polyv_rtmp_finish_paddingtop">1.7dp</dimen>
+</resources>

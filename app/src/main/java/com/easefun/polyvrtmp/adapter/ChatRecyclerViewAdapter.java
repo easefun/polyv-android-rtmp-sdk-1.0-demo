@@ -33,7 +33,7 @@ public class ChatRecyclerViewAdapter extends AbsRecyclerViewAdapter{
     @Override
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.polyv_recyclerview_chat_item,parent,false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.polyv_rtmp_recyclerview_item_chat,parent,false));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ChatRecyclerViewAdapter extends AbsRecyclerViewAdapter{
             String nickName = chatMessage.getUser().getNick()+"  ";
             String message = chatMessage.getValues()[0];
             SpannableStringBuilder span = new SpannableStringBuilder(nickName+message);
-            span.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.orange_main)),0,nickName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.polyv_rtmp_orange_main)),0,nickName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             viewHolder.tv_chat.setText(span);
         }
         super.onBindViewHolder(holder, position);

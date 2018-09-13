@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import com.easefun.polyvrtmp.R;
@@ -11,7 +12,7 @@ import com.easefun.polyvrtmp.R;
 public class PolyvLaunchActivity extends Activity {
     private static final int LAUCHFINISH = 12;
 
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -26,7 +27,7 @@ public class PolyvLaunchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.polyv_activity_launch);
+        setContentView(R.layout.polyv_rtmp_activity_launch);
         handler.sendEmptyMessageDelayed(LAUCHFINISH, 800);
     }
 

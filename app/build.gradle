@@ -6,16 +6,25 @@ android {
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 10800
-        versionName "1.0.8"
+        versionCode 20000
+        versionName "2.0.0"
+
+        //依赖的包可能支持很多类型的ABI
+        //为了避免打包了我们没有支持的ABI，指定需要打包的ABI目录
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'armeabi', 'x86_64', 'x86'
+        }
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     lintOptions {
         abortOnError false
     }
@@ -42,8 +51,12 @@ dependencies {
     }
     //弹幕
     compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
-    //裁剪图片的库，用于选择直播logo
-    compile 'com.yalantis:ucrop:2.2.0'
-    //裁剪图片的库，用于选择直播logo
-    compile 'com.yalantis:ucrop:2.2.0-native'
+    //裁剪图片的库，用于选择直播logo。下面排除android的库是因为会跟上面自己依赖的android库版本冲突，可以根据自己的版本调整。
+    compile('com.yalantis:ucrop:2.2.0') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    //bugly
+    compile 'com.tencent.bugly:crashreport:latest.release'
 }

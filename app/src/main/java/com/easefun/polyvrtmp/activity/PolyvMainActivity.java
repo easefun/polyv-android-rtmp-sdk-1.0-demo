@@ -63,7 +63,8 @@ public class PolyvMainActivity extends FragmentActivity {
             switch (msg.what) {
                 case START:
                     iv_time.setVisibility(View.GONE);
-                    polyvRTMPView.capture(mChannelId, "appId", "appSecret");
+//                    polyvRTMPView.capture(mChannelId, "appId", "appSecret");
+                    polyvRTMPView.beginLive(mChannelId);
                     break;
                 case TIME_COUNT:
                     long timeInMillies = System.currentTimeMillis() - startTime;
@@ -77,7 +78,7 @@ public class PolyvMainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.polyv_activity_main);
+        setContentView(R.layout.polyv_rtmp_activity_main);
         initExtraParam();
         initOrientation();
         initViews();
@@ -125,7 +126,7 @@ public class PolyvMainActivity extends FragmentActivity {
                     // 倒计时
                     AnimationDrawable anim = new AnimationDrawable();
                     for (int i = 3; i > 0; i--) {
-                        int id = getResources().getIdentifier("polyv_number_" + i, "drawable", getPackageName());
+                        int id = getResources().getIdentifier("polyv_rtmp_number_" + i, "drawable", getPackageName());
                         Drawable drawable = getResources().getDrawable(id);
                         anim.addFrame(drawable, 1000);
                     }
@@ -254,8 +255,8 @@ public class PolyvMainActivity extends FragmentActivity {
 
             alertDialog = builder.show();
             // show之后才可以获取，否则获取为null
-            alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.gray_main_d));
-            alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.color_custom));
+            alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.polyv_rtmp_gray_main_d));
+            alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.polyv_rtmp_color_custom));
         }
     }
 
@@ -289,8 +290,7 @@ public class PolyvMainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler.removeMessages(START);
-        handler.removeMessages(TIME_COUNT);
+        handler.removeCallbacksAndMessages(null);
         polyvRTMPView.destroy();
         if (isReceiver) {
             unregisterReceiver(receiver);

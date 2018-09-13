@@ -37,7 +37,7 @@ public class PolyvGrayImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (isPressed() && drawColor)
-            canvas.drawColor(getResources().getColor(R.color.translucence_share));
+            canvas.drawColor(getResources().getColor(R.color.polyv_rtmp_translucence_share));
     }
 
     @Override

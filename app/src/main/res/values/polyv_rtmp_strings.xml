@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings related to login -->
+    <string name="polyv_rtmp_prompt_account_id">直播频道ID</string>
+    <string name="polyv_rtmp_prompt_password">直播密码</string>
+    <string name="polyv_rtmp_action_sign_in">登录</string>
+</resources>

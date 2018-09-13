@@ -23,7 +23,7 @@ public class AvatarRecyclerViewAdapter extends AbsRecyclerViewAdapter {
     @Override
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.polyv_recycleview_mian_item, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.polyv_rtmp_recyclerview_item_mian, parent, false));
     }
 
     @Override
@@ -34,8 +34,8 @@ public class AvatarRecyclerViewAdapter extends AbsRecyclerViewAdapter {
                     .load(urls.get(position).getPic())
                     .skipMemoryCache(true)
                     .dontAnimate()
-                    .placeholder(R.drawable.polyv_missing_face)
-                    .error(R.drawable.polyv_missing_face)
+                    .placeholder(R.drawable.polyv_rtmp_missing_face)
+                    .error(R.drawable.polyv_rtmp_missing_face)
                     .into(viewHolder.iv_avatar);
         }
         super.onBindViewHolder(holder, position);
