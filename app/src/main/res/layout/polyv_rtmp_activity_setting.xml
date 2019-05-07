@@ -13,8 +13,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/polyv_rtmp_color_custom">
+            android:layout_height="60dp"
+            android:background="@color/polyv_rtmp_color_custom_setting_top_color">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -27,11 +27,13 @@
 
             <TextView
                 android:id="@+id/tv_logoff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/polyv_rtmp_setting_tv_pressed"
-                android:padding="@dimen/polyv_rtmp_setting_padding"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/polyv_rtmp_setting_tv_bg"
+                android:gravity="center"
                 android:text="注销"
                 android:textColor="@color/polyv_rtmp_white_share"
                 android:textSize="@dimen/polyv_rtmp_setting_tv_textsize" />
@@ -39,22 +41,39 @@
 
         <TextView
             style="@style/polyv_rtmp_setting_textview"
-            android:text="活动标题" />
+            android:text="直播名称" />
 
-        <EditText
-            android:id="@+id/et_title"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/polyv_rtmp_setting_et_height"
-            android:background="@color/polyv_rtmp_white_share"
-            android:gravity="top|left"
-            android:hint="标题字数请限制在20个中文字以内"
-            android:imeOptions="flagNoFullscreen"
-            android:inputType="text"
-            android:maxLength="20"
-            android:padding="@dimen/polyv_rtmp_setting_paddingleft"
-            android:textColor="@color/polyv_rtmp_gray_setting_d"
-            android:textColorHint="@color/polyv_rtmp_gray_main_d"
-            android:textSize="@dimen/polyv_rtmp_setting_tv_textsize" />
+            android:layout_height="46dp">
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/polyv_rtmp_white_share"
+                android:gravity="left|center"
+                android:hint="请输入直播名称（20个中文字以内）"
+                android:imeOptions="flagNoFullscreen"
+                android:inputType="text"
+                android:maxLength="20"
+                android:paddingLeft="@dimen/polyv_rtmp_setting_paddingleft"
+                android:paddingRight="50dp"
+                android:singleLine="true"
+                android:textColor="@color/polyv_rtmp_gray_setting_d"
+                android:textColorHint="@color/polyv_rtmp_gray_main_d"
+                android:textSize="@dimen/polyv_rtmp_setting_tv_textsize" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="12dp"
+                android:text="1/20"
+                android:textColor="#212121"
+                android:textSize="12sp" />
+        </FrameLayout>
 
         <TextView
             style="@style/polyv_rtmp_setting_textview"
@@ -211,60 +230,150 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/polyv_rtmp_setting_v_height"
-            android:background="@color/polyv_rtmp_gray_share" />
+        <TextView
+            android:visibility="gone"
+            style="@style/polyv_rtmp_setting_textview"
+            android:text="分享到" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="86dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/polyv_rtmp_setting_marginleft"
-                android:layout_marginRight="@dimen/polyv_rtmp_setting_marginleft"
-                android:paddingTop="@dimen/polyv_rtmp_setting_paddingtop_s">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/iv_wechat"
                     style="@style/polyv_rtmp_setting_imageview_s"
                     android:src="@drawable/polyv_rtmp_setting_iv_selected_wechat" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="微信好友"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/iv_moments"
                     style="@style/polyv_rtmp_setting_imageview_s"
                     android:src="@drawable/polyv_rtmp_setting_iv_selected_moments" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="朋友圈"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/iv_weibo"
                     style="@style/polyv_rtmp_setting_imageview_s"
                     android:src="@drawable/polyv_rtmp_setting_iv_selected_weibo" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="新浪微博"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/iv_qq"
                     style="@style/polyv_rtmp_setting_imageview_s"
                     android:src="@drawable/polyv_rtmp_setting_iv_selected_qq" />
 
-                <ImageView
-                    android:id="@+id/iv_qzone"
-                    style="@style/polyv_rtmp_setting_imageview_s"
-                    android:src="@drawable/polyv_rtmp_setting_iv_selected_qzone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="QQ"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_share_link"
+                    style="@style/polyv_rtmp_setting_imageview_s"
+                    android:src="@drawable/polyv_rtmp_setting_iv_selected_share_link" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="观看URL"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/polyv_rtmp_gray_share" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:layout_marginLeft="@dimen/polyv_rtmp_setting_marginleft"
+            android:layout_marginRight="@dimen/polyv_rtmp_setting_marginleft"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/bt_start"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/polyv_rtmp_setting_bt_height"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/polyv_rtmp_setting_paddingtop_s"
-                android:background="@drawable/polyv_rtmp_setting_bt_pressed"
+                android:background="@drawable/polyv_rtmp_login_bt_pressed"
                 android:gravity="center"
                 android:text="开始直播"
-                android:textColor="@color/polyv_rtmp_white_share"
+                android:textColor="@color/polyv_rtmp_color_custom_login_button_text_color"
                 android:textSize="@dimen/polyv_rtmp_setting_tv_textsize" />
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

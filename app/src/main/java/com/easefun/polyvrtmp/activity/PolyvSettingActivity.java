@@ -2,6 +2,8 @@ package com.easefun.polyvrtmp.activity;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +14,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +30,7 @@ import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.permission.PolyvPermission;
 import com.easefun.polyvrtmp.util.PolyvStatusBarUtil;
 import com.easefun.polyvrtmp.view.PolyvGrayImageView;
+import com.easefun.polyvsdk.rtmp.chat.permission.PolyvPermissionManager;
 import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvAuthTypeSetting;
 import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvTitleUpdate;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPDefinition;
@@ -45,9 +50,10 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private PolyvGrayImageView iv_logo;
     private ImageView iv_portrait, iv_landscape, iv_sc, iv_hd, iv_sd, iv_public, iv_password, iv_pay;
     private RelativeLayout rl_portrait, rl_landscape, rl_sc, rl_hd, rl_sd, rl_public, rl_password, rl_pay;
-    private ImageView iv_wechat, iv_moments, iv_weibo, iv_qq, iv_qzone;
+    private ImageView iv_wechat, iv_moments, iv_weibo, iv_qq, iv_share_link;
     // 标题编辑框
     private EditText et_title;
+    private TextView tv_count;
     // 注销按钮
     private TextView tv_logoff;
     // 开始按钮
@@ -68,6 +74,9 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     // 价格
     private double price;
     private FinishBroadcastReceiver receiver;
+
+    private PolyvPermissionManager permissionManager;
+    private final int myRequestCode = 135;
 
     private class FinishBroadcastReceiver extends BroadcastReceiver {
 
@@ -93,7 +102,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         setContentView(R.layout.polyv_rtmp_activity_setting);
         // edittext->adjustPan(否则部分手机会有延迟的白色背景)
         try {
-            PolyvStatusBarUtil.setColor(this, getResources().getColor(R.color.polyv_rtmp_color_custom), 0);
+            PolyvStatusBarUtil.setColor(this, getResources().getColor(R.color.polyv_rtmp_color_custom_setting_top_color), 0);
         }catch (Exception e){
             // ignore
         }
@@ -136,10 +145,11 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         iv_moments = (ImageView) findViewById(R.id.iv_moments);
         iv_weibo = (ImageView) findViewById(R.id.iv_weibo);
         iv_qq = (ImageView) findViewById(R.id.iv_qq);
-        iv_qzone = (ImageView) findViewById(R.id.iv_qzone);
+        iv_share_link = (ImageView) findViewById(R.id.iv_share_link);
         bt_start = (Button) findViewById(R.id.bt_start);
         et_title = (EditText) findViewById(R.id.et_title);
         tv_logoff = (TextView) findViewById(R.id.tv_logoff);
+        tv_count = (TextView) findViewById(R.id.tv_count);
     }
 
     private void initView() {
@@ -156,13 +166,28 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         iv_moments.setOnClickListener(this);
         iv_weibo.setOnClickListener(this);
         iv_qq.setOnClickListener(this);
-        iv_qzone.setOnClickListener(this);
+        iv_share_link.setOnClickListener(this);
         bt_start.setOnClickListener(this);
         tv_logoff.setOnClickListener(this);
         et_title.setText(title);
+        tv_count.setText(et_title.getText().length() + "/20");
         et_title.setSelection(et_title.length());
+        et_title.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-        resetDefinition(PolyvRTMPDefinition.CHAO_QING);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tv_count.setText(et_title.getText().length() + "/20");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        resetDefinition(PolyvRTMPDefinition.GAO_QING);
         resetMode(PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE);
         iv_public.setSelected(true);
 
@@ -198,12 +223,12 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private void resetMode(int orientation) {
         switch (orientation) {
             case PolyvRTMPOrientation.SCREEN_ORIENTATION_PORTRAIT:
-                iv_landscape.setSelected(false);
-                iv_portrait.setSelected(true);
+                iv_landscape.setVisibility(View.GONE);
+                iv_portrait.setVisibility(View.VISIBLE);
                 break;
             case PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE:
-                iv_portrait.setSelected(false);
-                iv_landscape.setSelected(true);
+                iv_portrait.setVisibility(View.GONE);
+                iv_landscape.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -213,19 +238,19 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private void resetDefinition(int definition) {
         switch (definition) {
             case PolyvRTMPDefinition.CHAO_QING:
-                iv_hd.setSelected(false);
-                iv_sd.setSelected(false);
-                iv_sc.setSelected(true);
+                iv_hd.setVisibility(View.GONE);
+                iv_sd.setVisibility(View.GONE);
+                iv_sc.setVisibility(View.VISIBLE);
                 break;
             case PolyvRTMPDefinition.GAO_QING:
-                iv_sc.setSelected(false);
-                iv_sd.setSelected(false);
-                iv_hd.setSelected(true);
+                iv_sc.setVisibility(View.GONE);
+                iv_sd.setVisibility(View.GONE);
+                iv_hd.setVisibility(View.VISIBLE);
                 break;
             case PolyvRTMPDefinition.LIU_CHANGE:
-                iv_sc.setSelected(false);
-                iv_hd.setSelected(false);
-                iv_sd.setSelected(true);
+                iv_sc.setVisibility(View.GONE);
+                iv_hd.setVisibility(View.GONE);
+                iv_sd.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -309,6 +334,10 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         }
         if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
+        }
+
+        if (requestCode == myRequestCode && resultCode == Activity.RESULT_CANCELED) {
+            permissionManager.request();
         }
     }
 
@@ -402,7 +431,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.iv_qq:
                 break;
-            case R.id.iv_qzone:
+            case R.id.iv_share_link:
                 break;
         }
     }
@@ -443,6 +472,11 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == myRequestCode) {
+            permissionManager.onPermissionResult(permissions, grantResults);
+            return;
+        }
+
         if (polyvPermission.operationHasPermission(requestCode)) {
             gotoPlay();
         } else {

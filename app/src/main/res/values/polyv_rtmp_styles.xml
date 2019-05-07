@@ -51,7 +51,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:src">@drawable/polyv_rtmp_setting_iv_selected</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:src">@drawable/polyv_rtmp_icon_selected</item>
     </style>
 
     <style name="polyv_rtmp_setting_view">
@@ -62,9 +63,8 @@
     </style>
 
     <style name="polyv_rtmp_setting_imageview_s">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
     </style>
 
     <style name="polyv_rtmp_setting_activity" parent="AppTheme">
@@ -74,10 +74,10 @@
     <style name="polyv_rtmp_finish_textview">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignLeft">@id/tv_finish</item>
+        <item name="android:layout_marginLeft">50dp</item>
         <item name="android:textColor">@color/polyv_rtmp_white_share</item>
         <item name="android:drawablePadding">@dimen/polyv_rtmp_finish_paddingleft</item>
-        <item name="android:textSize">@dimen/polyv_rtmp_finish_tv_textsize_s</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="polyv_rtmp_SplashTheme" parent="AppTheme">

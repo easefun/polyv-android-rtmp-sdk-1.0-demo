@@ -34,4 +34,5 @@ rtmpSDK1.0demo是rtmpSDK1.0的demo示例Android studio项目工程，其中包�
 1.0.6版API文档请看[v1.0.6 API](http://repo.polyv.net/android/rtmp/sdk/1.0.6/api/index.html)。<br/>
 1.0.7版API文档请看[v1.0.7 API](http://repo.polyv.net/android/rtmp/sdk/1.0.7/api/index.html)。<br/>
 1.0.8版API文档请看[v1.0.8 API](http://repo.polyv.net/android/rtmp/sdk/1.0.8/api/index.html)。<br/>
-2.0.0版API文档请看[v2.0.0 API](http://repo.polyv.net/android/rtmp/sdk/2.0.0/api/index.html)。
+2.0.0版API文档请看[v2.0.0 API](http://repo.polyv.net/android/rtmp/sdk/2.0.0/api/index.html)。<br/>
+2.1.0版API文档请看[v2.1.0 API](http://repo.polyv.net/android/rtmp/sdk/2.1.0/api/index.html)。

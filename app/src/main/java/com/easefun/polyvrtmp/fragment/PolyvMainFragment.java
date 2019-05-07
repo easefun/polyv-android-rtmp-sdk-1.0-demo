@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.easefun.polyvrtmp.R;
-import com.easefun.polyvrtmp.activity.PolyvChatActivity;
 import com.easefun.polyvrtmp.activity.PolyvFinishActivity;
 import com.easefun.polyvrtmp.adapter.AvatarRecyclerViewAdapter;
 import com.easefun.polyvrtmp.adapter.ChatRecyclerViewAdapter;
@@ -85,8 +85,6 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     private ReceiveSendMessageBroadcastReceiver receiver;
     // 弹幕Fragment
     private PolyvDanmakuFragment danmakuFragment;
-    // 分享Fragment
-    private PolyvShareFragment shareFragment;
     // 是否结束对话框Fragment
     private PolyvAlertDialogFragment alertDialogFragment;
     private PolyvRTMPView polyvRTMPView;
@@ -101,6 +99,8 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
                     PolyvChatMessage chatMessage = (PolyvChatMessage) msg.obj;
                     if (chatMessage.getChatType() == PolyvChatMessage.CHATTYPE_RECEIVE) {
                         rv_chat_adatper.insert(chatMessage);
+                        if (danmakuFragment != null && chatMessage.getValues() != null)
+                            danmakuFragment.addDanmaku(Html.fromHtml(chatMessage.getValues()[0]));
                     } else if (chatMessage.getChatType() == PolyvChatMessage.CHATTYPE_RECEIVE_NOTICE) {
                         switch (chatMessage.getEvent()) {
                             // 用户被踢，不能发送信息，再次连接聊天室可恢复
@@ -130,8 +130,18 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
                             case PolyvChatMessage.EVENT_GONGGAO:
                                 chatMessage.setValues(new String[]{"公告 " + chatMessage.getContent()});
                                 break;
+                            // 登录
+                            case PolyvChatMessage.EVENT_LOGIN:
+                                if (totalWatcher == 0) {
+                                    totalWatcher = chatMessage.getOnlineUserNumber();
+                                } else {
+                                    if (chatMessage.getUser() != null && !userId.equals(chatMessage.getUser().getUserId())) {
+                                        totalWatcher = Math.max(chatMessage.getOnlineUserNumber(), ++totalWatcher);
+                                    }
+                                }
+                                break;
                         }
-                        if (danmakuFragment != null)
+                        if (danmakuFragment != null && chatMessage.getValues() != null)
                             danmakuFragment.addDanmaku(chatMessage.getValues()[0]);
                     }
                     break;
@@ -257,13 +267,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     //添加Fragment
     private void addFragmnet() {
         danmakuFragment = new PolyvDanmakuFragment();
-        shareFragment = new PolyvShareFragment();
         alertDialogFragment = new PolyvAlertDialogFragment();
-        getChildFragmentManager().beginTransaction()
-                .add(R.id.fl_danmaku, danmakuFragment, "danmakuFragment")
-                .add(R.id.fl_share, shareFragment, "shareFragment")
-                .hide(shareFragment)
-                .commit();
     }
 
     private void findId() {
@@ -373,7 +377,6 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
         listUsersInterface.getOnlineUsers(6000, new OnlineUpdateListener() {
             @Override
             public void onUserList(PolyvOnlineUsers userList, int totalWatcher) {
-                PolyvMainFragment.this.totalWatcher = totalWatcher;
                 Message message = handler.obtainMessage();
                 message.obj = userList;
                 message.what = UPDATEONLINE;
@@ -394,15 +397,11 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
 
     // 子Fragment是否处于显示状态/结束对话框是否是隐藏状态
     public boolean isShowChild() {
-        return shareFragment.isShow() || !alertDialogFragment.isVisible();
+        return !alertDialogFragment.isVisible();
     }
 
     //隐藏子Fragment/弹出结束对话框
     public void hideChild() {
-        if (shareFragment.isShow()) {
-            shareFragment.selectHide();
-            return;
-        }
         showAlertDialogFragment();
     }
 
@@ -447,17 +446,19 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
                 resetMoreLayout();
                 break;
             case R.id.iv_chat:
-                Intent intent = new Intent(getActivity(), PolyvChatActivity.class);
-                intent.putExtra("toggle", toggle);
-                startActivity(intent);
-                getActivity().overridePendingTransition(0, 0);
+                iv_chat.setSelected(!iv_chat.isSelected());
+                if (danmakuFragment != null) {
+                    danmakuFragment.toggle(iv_chat.isSelected() ? PolyvDanmakuFragment.OFF : PolyvDanmakuFragment.ON);
+                }
+//                Intent intent = new Intent(getActivity(), PolyvChatActivity.class);
+//                intent.putExtra("toggle", toggle);
+//                startActivity(intent);
+//                getActivity().overridePendingTransition(0, 0);
                 break;
             case R.id.iv_close:
                 showAlertDialogFragment();
                 break;
             case R.id.iv_share:
-                getChildFragmentManager().beginTransaction().show(shareFragment).commit();
-                shareFragment.show();
                 break;
             case R.id.iv_switchcamera:
                 polyvRTMPView.toggleFrontBackCamera();

@@ -1,6 +1,7 @@
 package com.easefun.polyvrtmp.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -42,8 +43,8 @@ public class ChatRecyclerViewAdapter extends AbsRecyclerViewAdapter{
             ItemViewHolder viewHolder = (ItemViewHolder)holder;
             PolyvChatMessage chatMessage = ls_messages.get(position);
             String nickName = chatMessage.getUser().getNick()+"  ";
-            String message = chatMessage.getValues()[0];
-            SpannableStringBuilder span = new SpannableStringBuilder(nickName+message);
+            Spanned message = Html.fromHtml(chatMessage.getValues()[0]);
+            SpannableStringBuilder span = new SpannableStringBuilder(nickName+message.toString());
             span.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.polyv_rtmp_orange_main)),0,nickName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             viewHolder.tv_chat.setText(span);
         }

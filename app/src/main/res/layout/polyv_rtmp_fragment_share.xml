@@ -3,6 +3,9 @@
     android:id="@+id/ll_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="15dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:background="@color/polyv_rtmp_translucence_share"
     android:gravity="bottom|center_horizontal"
     android:orientation="vertical">
@@ -11,7 +14,7 @@
         android:id="@+id/ll_botttom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/polyv_rtmp_white_share"
+        android:background="@drawable/polyv_rtmp_share_ly_bg_corners"
         android:clickable="true"
         android:orientation="vertical">
 
@@ -21,8 +24,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/polyv_rtmp_share_margintop"
             android:text="分享到"
-            android:textColor="@color/polyv_rtmp_black_share_d"
-            android:textSize="@dimen/polyv_rtmp_share_tv_textsize" />
+            android:textColor="#404040"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,16 +40,17 @@
                 style="@style/polyv_rtmp_share_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/polyv_rtmp_icon_wechat_enable" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/polyv_rtmp_share_margintop_s"
-                    android:textSize="@dimen/polyv_rtmp_share_tv_textsize_m"
-                    android:text="微信" />
+                    android:text="微信好友"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -54,15 +58,16 @@
                 style="@style/polyv_rtmp_share_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/polyv_rtmp_icon_moments_enable" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/polyv_rtmp_share_margintop_s"
-                    android:textSize="@dimen/polyv_rtmp_share_tv_textsize_m"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
                     android:text="朋友圈" />
             </LinearLayout>
 
@@ -71,16 +76,17 @@
                 style="@style/polyv_rtmp_share_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/polyv_rtmp_icon_weibo_enable" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/polyv_rtmp_share_margintop_s"
-                    android:textSize="@dimen/polyv_rtmp_share_tv_textsize_m"
-                    android:text="微博" />
+                    android:text="新浪微博"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,47 +94,49 @@
                 style="@style/polyv_rtmp_share_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/polyv_rtmp_icon_qq_enable" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/polyv_rtmp_share_margintop_s"
-                    android:textSize="@dimen/polyv_rtmp_share_tv_textsize_m"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
                     android:text="QQ" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_qzone"
+                android:id="@+id/iv_share_link"
                 style="@style/polyv_rtmp_share_layout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/polyv_rtmp_icon_qzone_enable" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/polyv_rtmp_icon_share_link_enable" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/polyv_rtmp_share_margintop_s"
-                    android:textSize="@dimen/polyv_rtmp_share_tv_textsize_m"
-                    android:text="QQ空间" />
+                    android:text="观看URL"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/bt_cancel"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/polyv_rtmp_share_bt_height"
+            android:layout_height="44dp"
             android:layout_marginLeft="@dimen/polyv_rtmp_share_marginleft"
             android:layout_marginRight="@dimen/polyv_rtmp_share_marginleft"
             android:layout_marginBottom="@dimen/polyv_rtmp_share_margintop_m"
             android:layout_marginTop="@dimen/polyv_rtmp_share_margintop_m"
             android:background="@drawable/polyv_rtmp_share_bt_pressed"
             android:text="取消"
-            android:textSize="@dimen/polyv_rtmp_share_tv_textsize_m"
-            android:textColor="@color/polyv_rtmp_blue_share" />
+            android:textColor="#212121"
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

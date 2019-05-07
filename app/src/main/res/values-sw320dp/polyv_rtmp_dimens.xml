@@ -61,7 +61,7 @@
     <dimen name="polyv_rtmp_setting_padding">13.3dp</dimen>
     <dimen name="polyv_rtmp_setting_tv_textsize">14.2sp</dimen>
     <dimen name="polyv_rtmp_setting_tv_textsize_s">11.8sp</dimen>
-    <dimen name="polyv_rtmp_setting_paddingtop">21.2dp</dimen>
+    <dimen name="polyv_rtmp_setting_paddingtop">17.2dp</dimen>
     <dimen name="polyv_rtmp_setting_paddingtop_s">15.7dp</dimen>
     <dimen name="polyv_rtmp_setting_paddingbottom">10dp</dimen>
     <dimen name="polyv_rtmp_setting_paddingleft">11.8dp</dimen>

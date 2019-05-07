@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.easefun.polyvrtmp.R;
-import com.easefun.polyvrtmp.fragment.PolyvShareFragment;
 import com.easefun.polyvrtmp.util.PolyvScreenUtils;
 import com.easefun.polyvsdk.rtmp.chat.PolyvChatManager;
 import com.easefun.polyvsdk.rtmp.core.login.IPolyvRTMPLoginListener;
@@ -115,6 +114,9 @@ public class PolyvLoginActivity extends Activity {
                             case PolyvRTMPLoginErrorReason.REQUEST_SERVER_FAIL:
                                 Toast.makeText(PolyvLoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
                                 break;
+                            case PolyvRTMPLoginErrorReason.LIVE_SCENE_INCORRECT:
+                                Toast.makeText(PolyvLoginActivity.this, "请使用普通直播场景频道登录", Toast.LENGTH_SHORT).show();
+                                break;
                         }
                     }
 
@@ -127,8 +129,6 @@ public class PolyvLoginActivity extends Activity {
 
                         //登陆成功初始化聊天室配置
                         PolyvChatManager.initConfig(PolyvRTMPLoginVerify.getPolyvPublishVO().getAppId(), PolyvRTMPLoginVerify.getPolyvPublishVO().getAppSecret());
-                        // 初始化分享配置
-                        PolyvShareFragment.initShareConfig(preview_nickname_avatar[0], preview_nickname_avatar[2], null, null);
 
                         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

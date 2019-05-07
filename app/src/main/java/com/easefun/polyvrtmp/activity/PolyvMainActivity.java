@@ -15,6 +15,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -27,10 +28,10 @@ import com.easefun.polyvrtmp.util.PolyvErrorMessageUtils;
 import com.easefun.polyvrtmp.util.PolyvScreenUtils;
 import com.easefun.polyvsdk.rtmp.core.util.PolyvRTMPSDKUtil;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPDefinition;
-import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPOrientation;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPErrorReason;
-import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPView;
+import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPOrientation;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPRenderScreenSize;
+import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPView;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnCallbackSessionIdListener;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnCameraChangeListener;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnDisconnectionListener;
@@ -56,7 +57,7 @@ public class PolyvMainActivity extends FragmentActivity {
 
     private static final int START = 1;
     private static final int TIME_COUNT = 2;
-    private long startTime = 0L;
+    private long time = 0L;
     private Handler handler = new Handler(Looper.myLooper()) {
         @Override
         public void handleMessage(Message msg) {
@@ -67,8 +68,8 @@ public class PolyvMainActivity extends FragmentActivity {
                     polyvRTMPView.beginLive(mChannelId);
                     break;
                 case TIME_COUNT:
-                    long timeInMillies = System.currentTimeMillis() - startTime;
-                    mainFragment.getTimeView().setText(PolyvDisplayUtils.getVideoDisplayTime(timeInMillies));
+                    time = time + 1000;
+                    mainFragment.getTimeView().setText(PolyvDisplayUtils.getVideoDisplayTime(time));
                     handler.sendEmptyMessageDelayed(TIME_COUNT, 1000);
                     break;
             }
@@ -133,9 +134,9 @@ public class PolyvMainActivity extends FragmentActivity {
                     anim.setOneShot(true);
                     iv_time.setImageDrawable(anim);
                     anim.start();
-                }
 
-                handler.sendEmptyMessageDelayed(START, 3000);
+                    handler.sendEmptyMessageDelayed(START, 3000);
+                }
             }
         });
 
@@ -182,7 +183,6 @@ public class PolyvMainActivity extends FragmentActivity {
             @Override
             public void onSuccess() {
                 mainFragment.getTimeView().setVisibility(View.VISIBLE);
-                startTime = System.currentTimeMillis();
                 handler.sendEmptyMessageDelayed(TIME_COUNT, 1000);
                 Toast.makeText(PolyvMainActivity.this, "推流开始", Toast.LENGTH_SHORT).show();
             }
@@ -272,19 +272,28 @@ public class PolyvMainActivity extends FragmentActivity {
     };
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        polyvRTMPView.pause();
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (iv_time.getVisibility() != View.VISIBLE)
+            polyvRTMPView.callOnTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onStop() {
+        super.onStop();
+        handler.removeMessages(START);
+        handler.removeMessages(TIME_COUNT);
+        polyvRTMPView.stop();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
         if (alertDialog != null && alertDialog.isShowing()) {
             alertDialog.dismiss();
         }
 
-        polyvRTMPView.resume();
+        handler.sendEmptyMessageDelayed(START, 3000);
     }
 
     @Override

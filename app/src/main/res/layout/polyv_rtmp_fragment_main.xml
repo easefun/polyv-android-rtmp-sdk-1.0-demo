@@ -9,7 +9,7 @@
         android:layout_marginBottom="@dimen/polyv_rtmp_main_marginbottom"
         android:layout_marginLeft="@dimen/polyv_rtmp_main_marginleft"
         android:layout_marginRight="@dimen/polyv_rtmp_main_marginleft"
-        android:layout_marginTop="@dimen/polyv_rtmp_main_margintop"
+        android:layout_marginTop="40dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -101,18 +101,10 @@
                 android:layout_alignParentBottom="true">
 
                 <ImageView
-                    android:id="@+id/iv_chat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/polyv_rtmp_main_marginright_l"
-                    android:src="@drawable/polyv_rtmp_main_iv_pressed_chat" />
-
-                <ImageView
                     android:id="@+id/iv_micro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/polyv_rtmp_main_marginright_l"
-                    android:layout_toRightOf="@id/iv_chat"
                     android:src="@drawable/polyv_rtmp_main_iv_selected_micro" />
 
                 <ImageView
@@ -120,7 +112,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_micro"
+                    android:layout_marginRight="@dimen/polyv_rtmp_main_marginright_l"
                     android:src="@drawable/polyv_rtmp_main_iv_selected_beauty" />
+
+                <ImageView
+                    android:id="@+id/iv_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_beauty"
+                    android:src="@drawable/polyv_rtmp_main_iv_pressed_chat" />
 
                 <ImageView
                     android:id="@+id/iv_more"
@@ -145,6 +145,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/polyv_rtmp_main_marginbottom_s"
                 android:background="@drawable/polyv_rtmp_panel_bg"
+                android:alpha="0.7"
                 android:orientation="vertical"
                 android:visibility="invisible">
 
@@ -153,6 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:src="@drawable/polyv_rtmp_main_iv_pressed_share" />
 
                 <ImageView

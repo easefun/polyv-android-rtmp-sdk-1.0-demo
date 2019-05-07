@@ -13,6 +13,16 @@
     <color name="polyv_rtmp_gray_setting_d">#9e9e9e</color>
     <color name="polyv_rtmp_transparence_setting">#00000000</color>
     <color name="polyv_rtmp_black_setting_s">#636363</color>
+
+    <color name="polyv_rtmp_color_custom_login_input_text_color">#212121</color>
+    <color name="polyv_rtmp_color_custom_login_input_text_hint_color">#ff9e99a2</color>
     <color name="polyv_rtmp_color_custom">#548fe1</color>
     <color name="polyv_rtmp_color_custom_login">#ffffff</color>
+
+    <!--自定义包括：跳转页，登录页背景图，及下面的颜色(登录页，设置页按钮，设置页的顶部颜色)-->
+    <color name="polyv_rtmp_color_custom_login_button_text_color">#424242</color>
+    <color name="polyv_rtmp_color_custom_login_button_bg_color">#FFFFCC00</color>
+    <!--上面的颜色FF->D8-->
+    <color name="polyv_rtmp_color_custom_login_button_bg_color_ps">#D8FFCC00</color>
+    <color name="polyv_rtmp_color_custom_setting_top_color">#275AA5</color>
 </resources>

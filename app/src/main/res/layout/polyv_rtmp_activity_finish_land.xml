@@ -14,18 +14,16 @@
 
         <Button
             android:id="@+id/bt_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/polyv_rtmp_finish_bt_height"
-            android:layout_marginBottom="@dimen/polyv_rtmp_finish_marginbottom_l"
+            android:layout_width="300dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginLeft="@dimen/polyv_rtmp_finish_marginleft_m"
             android:layout_marginRight="@dimen/polyv_rtmp_finish_marginleft_m"
             android:background="@drawable/polyv_rtmp_finish_bt_pressed_setting"
             android:gravity="center"
-            android:paddingLeft="@dimen/polyv_rtmp_finish_marginleft_l_m"
-            android:paddingRight="@dimen/polyv_rtmp_finish_marginleft_l_m"
-            android:text="返回设置"
-            android:textColor="@color/polyv_rtmp_black_share_d"
-            android:textSize="@dimen/polyv_rtmp_finish_tv_textsize_s" />
+            android:text="返回直播设置"
+            android:textColor="#212121"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/bt_finish"
@@ -38,6 +36,7 @@
             android:gravity="center"
             android:paddingLeft="@dimen/polyv_rtmp_finish_marginleft_l_m"
             android:paddingRight="@dimen/polyv_rtmp_finish_marginleft_l_m"
+            android:visibility="gone"
             android:text="退出直播"
             android:textColor="@color/polyv_rtmp_white_share"
             android:textSize="@dimen/polyv_rtmp_finish_tv_textsize_s" />
@@ -70,29 +69,32 @@
             android:layout_height="wrap_content"
             android:text="直播已结束"
             android:textColor="@color/polyv_rtmp_white_share"
-            android:textSize="@dimen/polyv_rtmp_finish_tv_textsize" />
+            android:textSize="32dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/polyv_rtmp_finish_margintop_custom"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tv_watch"
-                style="@style/polyv_rtmp_finish_textview"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/polyv_rtmp_finish_marginleft"
-                android:layout_marginRight="@dimen/polyv_rtmp_finish_marginleft"
-                android:drawableLeft="@drawable/polyv_rtmp_icon_watch"
-                android:text="6666人看过" />
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_time"
-                style="@style/polyv_rtmp_finish_textview"
-                android:layout_alignBottom="@id/tv_watch"
-                android:drawableLeft="@drawable/polyv_rtmp_icon_live_time"
-                android:text="1小时5分钟30秒" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="170dp"
+                android:text="时间"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_watch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="30dp"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:text="6666人看过" />
 
             <TextView
                 android:id="@+id/tv_money"

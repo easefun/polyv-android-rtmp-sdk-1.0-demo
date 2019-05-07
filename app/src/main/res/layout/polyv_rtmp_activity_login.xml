@@ -7,46 +7,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:translationY="-40dp"
         android:orientation="vertical">
 
-        <com.easefun.polyvrtmp.view.PolyvLineAutoTextView
-            android:id="@+id/channel_id"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="@dimen/polyv_rtmp_login_marginleft"
-            android:layout_marginRight="@dimen/polyv_rtmp_login_marginleft"
-            android:background="@null"
-            android:hint="@string/polyv_rtmp_prompt_account_id"
-            android:imeOptions="flagNoFullscreen"
-            android:inputType="number"
-            android:paddingBottom="@dimen/polyv_rtmp_login_paddingbottom_custom"
-            android:paddingLeft="@dimen/polyv_rtmp_login_paddingleft_custom"
-            android:paddingRight="@dimen/polyv_rtmp_login_paddingleft_custom"
-            android:singleLine="true"
-            android:textColor="@color/polyv_rtmp_color_custom_login"
-            android:textColorHint="@color/polyv_rtmp_color_custom_login"
-            android:textCursorDrawable="@drawable/polyv_rtmp_login_et_cursor"
-            android:textSize="@dimen/polyv_rtmp_login_et_textsize" />
+            android:layout_marginRight="@dimen/polyv_rtmp_login_marginleft">
 
-        <com.easefun.polyvrtmp.view.PolyvLineEdittext
-            android:id="@+id/password"
+            <com.easefun.polyvrtmp.view.PolyvLineAutoTextView
+                android:id="@+id/channel_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/polyv_rtmp_login_input"
+                android:gravity="center|left"
+                android:hint="@string/polyv_rtmp_prompt_account_id"
+                android:imeOptions="flagNoFullscreen"
+                android:inputType="number"
+                android:paddingLeft="40dp"
+                android:paddingRight="@dimen/polyv_rtmp_login_paddingleft_custom"
+                android:singleLine="true"
+                android:textColor="@color/polyv_rtmp_color_custom_login_input_text_color"
+                android:textColorHint="@color/polyv_rtmp_color_custom_login_input_text_hint_color"
+                android:textCursorDrawable="@drawable/polyv_rtmp_login_et_cursor"
+                android:textSize="@dimen/polyv_rtmp_login_et_textsize" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:src="@drawable/polyv_rtmp_icon_channel" />
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="@dimen/polyv_rtmp_login_marginleft"
             android:layout_marginRight="@dimen/polyv_rtmp_login_marginleft"
-            android:layout_marginTop="@dimen/polyv_rtmp_login_margintop_custom_m"
-            android:background="@null"
-            android:hint="@string/polyv_rtmp_prompt_password"
-            android:imeOptions="flagNoFullscreen"
-            android:inputType="textPassword"
-            android:paddingBottom="@dimen/polyv_rtmp_login_paddingbottom_custom"
-            android:paddingLeft="@dimen/polyv_rtmp_login_paddingleft_custom"
-            android:paddingRight="@dimen/polyv_rtmp_login_paddingleft_custom"
-            android:singleLine="true"
-            android:textColor="@color/polyv_rtmp_color_custom_login"
-            android:textColorHint="@color/polyv_rtmp_color_custom_login"
-            android:textCursorDrawable="@drawable/polyv_rtmp_login_et_cursor"
-            android:textSize="@dimen/polyv_rtmp_login_et_textsize" />
+            android:layout_marginTop="14dp">
+
+            <com.easefun.polyvrtmp.view.PolyvLineEdittext
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/polyv_rtmp_login_input"
+                android:gravity="center|left"
+                android:hint="@string/polyv_rtmp_prompt_password"
+                android:imeOptions="flagNoFullscreen"
+                android:inputType="textPassword"
+                android:paddingLeft="40dp"
+                android:paddingRight="@dimen/polyv_rtmp_login_paddingleft_custom"
+                android:singleLine="true"
+                android:textColor="@color/polyv_rtmp_color_custom_login_input_text_color"
+                android:textColorHint="@color/polyv_rtmp_color_custom_login_input_text_hint_color"
+                android:textCursorDrawable="@drawable/polyv_rtmp_login_et_cursor"
+                android:textSize="@dimen/polyv_rtmp_login_et_textsize" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:src="@drawable/polyv_rtmp_icon_password" />
+        </FrameLayout>
 
         <CheckBox
             android:id="@+id/is_save_password"
@@ -60,22 +85,22 @@
             android:drawableLeft="@drawable/polyv_rtmp_login_cb_checked"
             android:drawablePadding="@dimen/polyv_rtmp_login_padding"
             android:paddingLeft="0dp"
-            android:text="记住登录"
+            android:text="记住密码"
             android:textColor="@color/polyv_rtmp_color_custom_login"
             android:textSize="@dimen/polyv_rtmp_login_et_textsize" />
 
         <Button
             android:id="@+id/sign_in"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/polyv_rtmp_login_bt_height_custom"
+            android:layout_height="44dp"
+            android:layout_marginBottom="@dimen/polyv_rtmp_login_marginbottom_custom"
             android:layout_marginLeft="@dimen/polyv_rtmp_login_marginleft"
             android:layout_marginRight="@dimen/polyv_rtmp_login_marginleft"
-            android:layout_marginTop="@dimen/polyv_rtmp_login_margintop_custom_m_l"
-            android:layout_marginBottom="@dimen/polyv_rtmp_login_marginbottom_custom"
+            android:layout_marginTop="26dp"
             android:background="@drawable/polyv_rtmp_login_bt_pressed"
             android:gravity="center"
             android:text="@string/polyv_rtmp_action_sign_in"
-            android:textColor="@color/polyv_rtmp_color_custom"
+            android:textColor="@color/polyv_rtmp_color_custom_login_button_text_color"
             android:textSize="@dimen/polyv_rtmp_login_tv_textsize" />
     </LinearLayout>
 

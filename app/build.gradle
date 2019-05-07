@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.3"
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 23
-        versionCode 20000
-        versionName "2.0.0"
+        targetSdkVersion 26
+        versionCode 21000
+        versionName "2.1.0"
 
         //依赖的包可能支持很多类型的ABI
         //为了避免打包了我们没有支持的ABI，指定需要打包的ABI目录

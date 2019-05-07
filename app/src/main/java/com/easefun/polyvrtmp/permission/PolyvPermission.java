@@ -27,7 +27,8 @@ public class PolyvPermission {
     private ArrayList<String> permissionsRejected = null;
 
     public enum OperationType {
-        play(100);
+        play(100),
+        share(101);
 
         private final int num;
         private OperationType(int num) {
@@ -41,6 +42,8 @@ public class PolyvPermission {
         public static OperationType getOperationType(int num) {
             if (num == play.getNum()) {
                 return play;
+            } else if(num == share.getNum()) {
+                return share;
             }
 
             return null;
@@ -67,6 +70,10 @@ public class PolyvPermission {
                 permissions.add(Manifest.permission.RECORD_AUDIO);
                 permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 resultCode = OperationType.play.getNum();
+                break;
+            case share:
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                resultCode = OperationType.share.getNum();
                 break;
         }
 
@@ -119,6 +126,8 @@ public class PolyvPermission {
                 return hasPermission(Manifest.permission.CAMERA)
                         && hasPermission(Manifest.permission.RECORD_AUDIO)
                         && hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            case share:
+                return hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
 
         return false;

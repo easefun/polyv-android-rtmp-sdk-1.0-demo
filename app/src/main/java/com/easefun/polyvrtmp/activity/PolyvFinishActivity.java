@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -73,7 +76,10 @@ public class PolyvFinishActivity extends Activity implements View.OnClickListene
         if (bitmapPath != null)
             rl_parent.setBackground(Drawable.createFromPath(bitmapPath));
         tv_time.setText(toWatchTime(time));
-        tv_watch.setText(totalWatcher + "人看过");
+        SpannableStringBuilder span = new SpannableStringBuilder("观看人次    ");
+        span.append(String.valueOf(totalWatcher));
+        span.setSpan(new RelativeSizeSpan(2f), span.length() - ((totalWatcher + "").length()), span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_watch.setText(span);
         msgs = new ArrayList<>();
         // 待完善
         // 模拟数据
@@ -101,13 +107,25 @@ public class PolyvFinishActivity extends Activity implements View.OnClickListene
         rv_moneysort.setAdapter(rv_moneysort_adapter);
     }
 
-    private String toWatchTime(String time) {
+    private CharSequence toWatchTime(String time) {
+        String text = "直播时长    ";
         String[] arr = time.split(":");
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].startsWith("0"))
                 arr[i] = arr[i].substring(1);
         }
-        return arr[0] + "小时" + arr[1] + "分钟" + arr[2] + "秒";
+        SpannableStringBuilder span = new SpannableStringBuilder();
+        span.append(text);
+        span.append(arr[0]);
+        span.setSpan(new RelativeSizeSpan(1.5f), span.length() - arr[0].length(), span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span.append("  小时  ");
+        span.append(arr[1]);
+        span.setSpan(new RelativeSizeSpan(1.5f), span.length() - arr[1].length(), span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span.append("  分钟  ");
+        span.append(arr[2]);
+        span.setSpan(new RelativeSizeSpan(1.5f), span.length() - arr[2].length(), span.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span.append("  秒");
+        return span;
     }
 
     private void sendFinishBroadcast() {
