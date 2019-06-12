@@ -268,6 +268,9 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     private void addFragmnet() {
         danmakuFragment = new PolyvDanmakuFragment();
         alertDialogFragment = new PolyvAlertDialogFragment();
+		getChildFragmentManager().beginTransaction()
+                .add(R.id.fl_danmaku, danmakuFragment, "danmakuFragment")
+                .commit();
     }
 
     private void findId() {
