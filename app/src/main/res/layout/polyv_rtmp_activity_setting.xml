@@ -53,10 +53,10 @@
                 android:layout_height="match_parent"
                 android:background="@color/polyv_rtmp_white_share"
                 android:gravity="left|center"
-                android:hint="请输入直播名称（20个中文字以内）"
+                android:hint="请输入直播名称（30个中文字以内）"
                 android:imeOptions="flagNoFullscreen"
                 android:inputType="text"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:paddingLeft="@dimen/polyv_rtmp_setting_paddingleft"
                 android:paddingRight="50dp"
                 android:singleLine="true"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
                 android:layout_marginRight="12dp"
-                android:text="1/20"
+                android:text="1/30"
                 android:textColor="#212121"
                 android:textSize="12sp" />
         </FrameLayout>

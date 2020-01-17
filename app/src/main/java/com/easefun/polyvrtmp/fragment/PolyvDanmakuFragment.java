@@ -20,6 +20,7 @@ import com.bumptech.glide.request.target.Target;
 import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.danmaku.BackgroundCacheStuffer;
 import com.easefun.polyvrtmp.danmaku.RelativeImageSpan;
+import com.easefun.polyvrtmp.util.face.PLVSTextFaceLoader;
 
 import java.util.HashMap;
 
@@ -183,6 +184,10 @@ public class PolyvDanmakuFragment extends Fragment {
         danmaku.setTime(mDanmakuView.getCurrentTime() + 100);
         danmaku.textSize = getResources().getDimension(R.dimen.polyv_rtmp_danmaku_tv_textsize);
         danmaku.textColor = Color.WHITE;
+
+        PLVSTextFaceLoader.setFaceSpan(view.getContext(),spannable, (int) danmaku.textSize,spannable);
+        danmaku.text = spannable;
+
         mDanmakuView.addDanmaku(danmaku);
     }
 

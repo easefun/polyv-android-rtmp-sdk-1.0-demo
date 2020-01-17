@@ -2,8 +2,6 @@ package com.easefun.polyvrtmp.activity;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -170,7 +168,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         bt_start.setOnClickListener(this);
         tv_logoff.setOnClickListener(this);
         et_title.setText(title);
-        tv_count.setText(et_title.getText().length() + "/20");
+        tv_count.setText(et_title.getText().length() + "/30");
         et_title.setSelection(et_title.length());
         et_title.addTextChangedListener(new TextWatcher() {
             @Override
@@ -179,7 +177,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tv_count.setText(et_title.getText().length() + "/20");
+                tv_count.setText(et_title.getText().length() + "/30");
             }
 
             @Override
@@ -422,16 +420,6 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.tv_logoff:
                 logoff();
-                break;
-            case R.id.iv_wechat:
-                break;
-            case R.id.iv_moments:
-                break;
-            case R.id.iv_weibo:
-                break;
-            case R.id.iv_qq:
-                break;
-            case R.id.iv_share_link:
                 break;
         }
     }

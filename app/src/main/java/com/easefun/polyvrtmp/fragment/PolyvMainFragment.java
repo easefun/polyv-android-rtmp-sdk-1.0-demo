@@ -268,7 +268,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     private void addFragmnet() {
         danmakuFragment = new PolyvDanmakuFragment();
         alertDialogFragment = new PolyvAlertDialogFragment();
-		getChildFragmentManager().beginTransaction()
+        getChildFragmentManager().beginTransaction()
                 .add(R.id.fl_danmaku, danmakuFragment, "danmakuFragment")
                 .commit();
     }
@@ -460,8 +460,6 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.iv_close:
                 showAlertDialogFragment();
-                break;
-            case R.id.iv_share:
                 break;
             case R.id.iv_switchcamera:
                 polyvRTMPView.toggleFrontBackCamera();

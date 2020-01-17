@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.easefun.polyvrtmp.R;
+import com.easefun.polyvrtmp.util.face.PLVSTextFaceLoader;
 import com.easefun.polyvsdk.rtmp.chat.PolyvChatMessage;
 
 import java.util.LinkedList;
@@ -45,6 +46,7 @@ public class ChatRecyclerViewAdapter extends AbsRecyclerViewAdapter{
             String nickName = chatMessage.getUser().getNick()+"  ";
             Spanned message = Html.fromHtml(chatMessage.getValues()[0]);
             SpannableStringBuilder span = new SpannableStringBuilder(nickName+message.toString());
+            PLVSTextFaceLoader.setFaceSpan(rv_chat.getContext(),span,(int)viewHolder.tv_chat.getTextSize(),span);
             span.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.polyv_rtmp_orange_main)),0,nickName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             viewHolder.tv_chat.setText(span);
         }

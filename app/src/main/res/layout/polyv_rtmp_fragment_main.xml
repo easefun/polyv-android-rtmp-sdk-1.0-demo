@@ -80,6 +80,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:visibility="invisible"
                 android:id="@+id/rv_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/polyv_rtmp_main_rv_height"
