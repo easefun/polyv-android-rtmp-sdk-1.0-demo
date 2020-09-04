@@ -28,7 +28,6 @@ import com.easefun.polyvrtmp.R;
 import com.easefun.polyvrtmp.permission.PolyvPermission;
 import com.easefun.polyvrtmp.util.PolyvStatusBarUtil;
 import com.easefun.polyvrtmp.view.PolyvGrayImageView;
-import com.easefun.polyvsdk.rtmp.chat.permission.PolyvPermissionManager;
 import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvAuthTypeSetting;
 import com.easefun.polyvsdk.rtmp.core.userinterface.PolyvTitleUpdate;
 import com.easefun.polyvsdk.rtmp.core.video.PolyvRTMPDefinition;
@@ -46,9 +45,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private static final String LOGO_NAME = "polyvlivelogo";
     // logo
     private PolyvGrayImageView iv_logo;
-    private ImageView iv_portrait, iv_landscape, iv_sc, iv_hd, iv_sd, iv_public, iv_password, iv_pay;
-    private RelativeLayout rl_portrait, rl_landscape, rl_sc, rl_hd, rl_sd, rl_public, rl_password, rl_pay;
-    private ImageView iv_wechat, iv_moments, iv_weibo, iv_qq, iv_share_link;
+    private ImageView iv_portrait, iv_landscape, iv_sc, iv_hd, iv_sd, iv_public, iv_password, iv_pay, iv_rl_beauty_on, iv_rl_beauty_off;
+    private RelativeLayout rl_portrait, rl_landscape, rl_sc, rl_hd, rl_sd, rl_public, rl_password, rl_pay, rl_beauty_on, rl_beauty_off;
     // 标题编辑框
     private EditText et_title;
     private TextView tv_count;
@@ -56,8 +54,6 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private TextView tv_logoff;
     // 开始按钮
     private Button bt_start;
-    // 分享的平台
-    private String sharePlatform;
     // 标题
     private String title;
     private PolyvPermission polyvPermission = null;
@@ -65,6 +61,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private String mChannelId;
     private int mOrientation = PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE;
     private int mDefinition = PolyvRTMPDefinition.GAO_QING;
+    private boolean isBeautyOn = true;
     // 观看认证类型
     private String authType = PolyvAuthTypeSetting.AUTHTYPE_NONE;
     // 密码
@@ -72,9 +69,6 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     // 价格
     private double price;
     private FinishBroadcastReceiver receiver;
-
-    private PolyvPermissionManager permissionManager;
-    private final int myRequestCode = 135;
 
     private class FinishBroadcastReceiver extends BroadcastReceiver {
 
@@ -128,6 +122,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         iv_public = (ImageView) findViewById(R.id.iv_public);
         iv_password = (ImageView) findViewById(R.id.iv_password);
         iv_pay = (ImageView) findViewById(R.id.iv_pay);
+        iv_rl_beauty_on = findViewById(R.id.iv_rl_beauty_on);
+        iv_rl_beauty_off = findViewById(R.id.iv_rl_beauty_off);
 
         rl_portrait = (RelativeLayout) findViewById(R.id.rl_portrait);
         rl_landscape = (RelativeLayout) findViewById(R.id.rl_landscape);
@@ -137,17 +133,15 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         rl_public = (RelativeLayout) findViewById(R.id.rl_public);
         rl_password = (RelativeLayout) findViewById(R.id.rl_password);
         rl_pay = (RelativeLayout) findViewById(R.id.rl_pay);
+        rl_beauty_on = findViewById(R.id.rl_beauty_on);
+        rl_beauty_off = findViewById(R.id.rl_beauty_off);
 
         iv_logo = (PolyvGrayImageView) findViewById(R.id.iv_logo);
-        iv_wechat = (ImageView) findViewById(R.id.iv_wechat);
-        iv_moments = (ImageView) findViewById(R.id.iv_moments);
-        iv_weibo = (ImageView) findViewById(R.id.iv_weibo);
-        iv_qq = (ImageView) findViewById(R.id.iv_qq);
-        iv_share_link = (ImageView) findViewById(R.id.iv_share_link);
         bt_start = (Button) findViewById(R.id.bt_start);
         et_title = (EditText) findViewById(R.id.et_title);
         tv_logoff = (TextView) findViewById(R.id.tv_logoff);
         tv_count = (TextView) findViewById(R.id.tv_count);
+
     }
 
     private void initView() {
@@ -159,12 +153,9 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         rl_public.setOnClickListener(this);
         rl_password.setOnClickListener(this);
         rl_pay.setOnClickListener(this);
+        rl_beauty_on.setOnClickListener(this);
+        rl_beauty_off.setOnClickListener(this);
         iv_logo.setOnClickListener(this);
-        iv_wechat.setOnClickListener(this);
-        iv_moments.setOnClickListener(this);
-        iv_weibo.setOnClickListener(this);
-        iv_qq.setOnClickListener(this);
-        iv_share_link.setOnClickListener(this);
         bt_start.setOnClickListener(this);
         tv_logoff.setOnClickListener(this);
         et_title.setText(title);
@@ -187,6 +178,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
 
         resetDefinition(PolyvRTMPDefinition.GAO_QING);
         resetMode(PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE);
+        resetBeauty(false);
         iv_public.setSelected(true);
 
         final String logoPath = getSharedPreferences(LOGO_NAME, MODE_PRIVATE).getString(LOGO_NAME, null);
@@ -253,6 +245,17 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         }
 
         mDefinition = definition;
+    }
+
+    private void resetBeauty(boolean beautyOn){
+        if (beautyOn){
+            iv_rl_beauty_on.setVisibility(View.VISIBLE);
+            iv_rl_beauty_off.setVisibility(View.GONE);
+        }else {
+            iv_rl_beauty_off.setVisibility(View.VISIBLE);
+            iv_rl_beauty_on.setVisibility(View.GONE);
+        }
+        isBeautyOn=beautyOn;
     }
 
     private void resetPermission(final int permission) {
@@ -333,10 +336,6 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
         }
-
-        if (requestCode == myRequestCode && resultCode == Activity.RESULT_CANCELED) {
-            permissionManager.request();
-        }
     }
 
     private void startCropActivity(@NonNull Uri uri) {
@@ -411,6 +410,12 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
                 // 待完善
 //                resetPermission(2);
                 break;
+            case R.id.rl_beauty_on:
+                resetBeauty(true);
+                break;
+            case R.id.rl_beauty_off:
+                resetBeauty(false);
+                break;
             case R.id.iv_logo:
                 // 待完善
 //                selectLogo();
@@ -445,6 +450,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         intent.putExtra("orientation", mOrientation);
         intent.putExtra("definition", mDefinition);
         intent.putExtra("avatarUrl", getIntent().getStringExtra("avatarUrl"));
+        intent.putExtra("isBeautyOn",isBeautyOn);
         startActivity(intent);
     }
 
@@ -460,11 +466,6 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == myRequestCode) {
-            permissionManager.onPermissionResult(permissions, grantResults);
-            return;
-        }
-
         if (polyvPermission.operationHasPermission(requestCode)) {
             gotoPlay();
         } else {

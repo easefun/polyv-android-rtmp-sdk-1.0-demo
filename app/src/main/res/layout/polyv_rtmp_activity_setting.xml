@@ -231,125 +231,34 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="gone"
             style="@style/polyv_rtmp_setting_textview"
-            android:text="分享到" />
+            android:text="美颜开关" />
 
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/rl_beauty_on"
+            style="@style/polyv_rtmp_setting_layout">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+            <TextView
+                style="@style/polyv_rtmp_setting_textview_s"
+                android:text="开启美颜" />
 
-                <ImageView
-                    android:id="@+id/iv_wechat"
-                    style="@style/polyv_rtmp_setting_imageview_s"
-                    android:src="@drawable/polyv_rtmp_setting_iv_selected_wechat" />
+            <ImageView
+                android:id="@+id/iv_rl_beauty_on"
+                style="@style/polyv_rtmp_setting_imageview" />
+        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="微信好友"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
-            </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_beauty_off"
+            style="@style/polyv_rtmp_setting_layout">
 
+            <TextView
+                style="@style/polyv_rtmp_setting_textview_s"
+                android:text="关闭美颜" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_moments"
-                    style="@style/polyv_rtmp_setting_imageview_s"
-                    android:src="@drawable/polyv_rtmp_setting_iv_selected_moments" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="朋友圈"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_weibo"
-                    style="@style/polyv_rtmp_setting_imageview_s"
-                    android:src="@drawable/polyv_rtmp_setting_iv_selected_weibo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="新浪微博"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_qq"
-                    style="@style/polyv_rtmp_setting_imageview_s"
-                    android:src="@drawable/polyv_rtmp_setting_iv_selected_qq" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="QQ"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_share_link"
-                    style="@style/polyv_rtmp_setting_imageview_s"
-                    android:src="@drawable/polyv_rtmp_setting_iv_selected_share_link" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="观看URL"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_rl_beauty_off"
+                style="@style/polyv_rtmp_setting_imageview" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

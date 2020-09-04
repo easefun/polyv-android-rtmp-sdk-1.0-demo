@@ -41,6 +41,7 @@ import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnOpenCameraSucce
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnPreparedListener;
 import com.easefun.polyvsdk.rtmp.core.video.listener.IPolyvRTMPOnPublishFailListener;
 import com.easefun.polyvsdk.rtmp.sopcast.video.effect.BeautyEffect;
+import com.easefun.polyvsdk.rtmp.sopcast.video.effect.NullEffect;
 
 public class PolyvMainActivity extends FragmentActivity {
     private PolyvRTMPView polyvRTMPView = null;
@@ -54,6 +55,7 @@ public class PolyvMainActivity extends FragmentActivity {
     private String mChannelId;
     private int mOrientation;
     private int mDefinition;
+    private boolean isBeautyOn;
 
     private static final int START = 1;
     private static final int TIME_COUNT = 2;
@@ -98,6 +100,7 @@ public class PolyvMainActivity extends FragmentActivity {
         mChannelId = getIntent().getStringExtra("channelId");
         mOrientation = getIntent().getIntExtra("orientation", PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE);
         mDefinition = getIntent().getIntExtra("definition", PolyvRTMPDefinition.GAO_QING);
+        isBeautyOn = getIntent().getBooleanExtra("isBeautyOn", false);
     }
 
     private void initOrientation() {
@@ -231,7 +234,11 @@ public class PolyvMainActivity extends FragmentActivity {
 
         polyvRTMPView.setConfiguration(mDefinition, mOrientation);
         polyvRTMPView.setRenderScreenSize(PolyvRTMPRenderScreenSize.AR_ASPECT_FIT_PARENT);
-        polyvRTMPView.setEffect(new BeautyEffect(this));
+        if (isBeautyOn){
+            polyvRTMPView.setEffect(new BeautyEffect(this));
+        }else {
+            polyvRTMPView.setEffect(new NullEffect(this));
+        }
     }
 
     private void showRestartAlertDialog(String title, String message, String positiveButtonText, String NegativeButtonText) {

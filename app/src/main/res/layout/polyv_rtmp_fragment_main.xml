@@ -109,6 +109,7 @@
                     android:src="@drawable/polyv_rtmp_main_iv_selected_micro" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/iv_beauty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

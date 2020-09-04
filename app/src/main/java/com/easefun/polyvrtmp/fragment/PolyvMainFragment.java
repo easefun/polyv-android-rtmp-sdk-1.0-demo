@@ -461,6 +461,9 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
             case R.id.iv_close:
                 showAlertDialogFragment();
                 break;
+            case R.id.iv_share:
+                //nothing
+                break;
             case R.id.iv_switchcamera:
                 polyvRTMPView.toggleFrontBackCamera();
                 if (!iv_switchcamera.isSelected()) {

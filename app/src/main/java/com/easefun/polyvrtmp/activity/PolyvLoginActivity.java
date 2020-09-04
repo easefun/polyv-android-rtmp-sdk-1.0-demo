@@ -74,6 +74,7 @@ public class PolyvLoginActivity extends Activity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String channelId = channelIdACTV.getText().toString();
                 final String password = passwordET.getText().toString();
                 if (TextUtils.isEmpty(channelId)) {
@@ -203,5 +204,4 @@ public class PolyvLoginActivity extends Activity {
     private String getCheckSelectKey(String accountId) {
         return CHECK_SELECTED_PREFIX_KEY + accountId;
     }
-
 }
