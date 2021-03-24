@@ -56,7 +56,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     private static final int RECONNECTSUCCESS = 30;
     private static final int UPDATEONLINE = 35;
     private View view;
-    private ImageView iv_logo, iv_close, iv_chat, iv_micro, iv_beauty, iv_more, iv_share, iv_switchcamera, iv_flashlight;
+    private ImageView iv_logo, iv_close, iv_chat, iv_micro, iv_beauty, iv_more, iv_share, iv_switch_mirror, iv_switchcamera, iv_flashlight;
     // 右下角的"更多"按钮
     private LinearLayout ll_right_bottom;
     // 在线人数，时间，速度
@@ -88,6 +88,8 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
     // 是否结束对话框Fragment
     private PolyvAlertDialogFragment alertDialogFragment;
     private PolyvRTMPView polyvRTMPView;
+
+    private boolean isMirrorOn;
 
     private Handler handler = new Handler() {
         @Override
@@ -284,6 +286,7 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
         iv_beauty = (ImageView) view.findViewById(R.id.iv_beauty);
         iv_more = (ImageView) view.findViewById(R.id.iv_more);
         iv_share = (ImageView) view.findViewById(R.id.iv_share);
+        iv_switch_mirror = (ImageView) view.findViewById(R.id.iv_switch_mirror);
         iv_switchcamera = (ImageView) view.findViewById(R.id.iv_switchcamera);
         iv_flashlight = (ImageView) view.findViewById(R.id.iv_flashlight);
         ll_right_bottom = (LinearLayout) view.findViewById(R.id.ll_right_bottom);
@@ -330,6 +333,12 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
         rv_avatar.setNestedScrollingEnabled(false);
         rv_avatar.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         rv_avatar.setAdapter(rv_avatar_adapter);
+
+        iv_switch_mirror.setSelected(isMirrorOn);
+        if (polyvRTMPView != null) {
+            polyvRTMPView.setOpenMirrorMode(isMirrorOn);
+        }
+        iv_switch_mirror.setOnClickListener(this);
     }
 
     // 登录聊天室
@@ -496,6 +505,13 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
                 else
                     iv_beauty.setSelected(false);
                 break;
+            case R.id.iv_switch_mirror:
+                isMirrorOn = !isMirrorOn;
+                if (polyvRTMPView != null) {
+                    polyvRTMPView.setOpenMirrorMode(isMirrorOn);
+                }
+                iv_switch_mirror.setSelected(isMirrorOn);
+                break;
         }
     }
 
@@ -507,5 +523,15 @@ public class PolyvMainFragment extends Fragment implements View.OnClickListener 
 
     public void setPolyvRTMPView(PolyvRTMPView polyvRTMPView) {
         this.polyvRTMPView = polyvRTMPView;
+    }
+
+    public void setMirrorOn(boolean mirrorOn) {
+        isMirrorOn = mirrorOn;
+        if (iv_switch_mirror != null) {
+            iv_switch_mirror.setSelected(isMirrorOn);
+        }
+        if (polyvRTMPView != null) {
+            polyvRTMPView.setOpenMirrorMode(mirrorOn);
+        }
     }
 }

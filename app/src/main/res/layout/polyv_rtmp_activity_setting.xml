@@ -260,6 +260,36 @@
                 style="@style/polyv_rtmp_setting_imageview" />
         </RelativeLayout>
 
+        <TextView
+            style="@style/polyv_rtmp_setting_textview"
+            android:text="镜像开关" />
+
+        <RelativeLayout
+            android:id="@+id/rl_mirror_on"
+            style="@style/polyv_rtmp_setting_layout">
+
+            <TextView
+                style="@style/polyv_rtmp_setting_textview_s"
+                android:text="开启镜像" />
+
+            <ImageView
+                android:id="@+id/iv_rl_mirror_on"
+                style="@style/polyv_rtmp_setting_imageview" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_mirror_off"
+            style="@style/polyv_rtmp_setting_layout">
+
+            <TextView
+                style="@style/polyv_rtmp_setting_textview_s"
+                android:text="关闭镜像" />
+
+            <ImageView
+                android:id="@+id/iv_rl_mirror_off"
+                style="@style/polyv_rtmp_setting_imageview" />
+        </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="20dp"

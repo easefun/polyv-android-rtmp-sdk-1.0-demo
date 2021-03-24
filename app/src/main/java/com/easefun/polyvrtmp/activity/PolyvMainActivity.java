@@ -56,6 +56,7 @@ public class PolyvMainActivity extends FragmentActivity {
     private int mOrientation;
     private int mDefinition;
     private boolean isBeautyOn;
+    private boolean isMirrorOnFromSettingPage;
 
     private static final int START = 1;
     private static final int TIME_COUNT = 2;
@@ -93,6 +94,7 @@ public class PolyvMainActivity extends FragmentActivity {
         mainFragment = new PolyvMainFragment();
         mainFragment.loginChatRoom(Build.SERIAL + "123", channelId, "主持人");
         mainFragment.setPolyvRTMPView(polyvRTMPView);
+        mainFragment.setMirrorOn(isMirrorOnFromSettingPage);
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_main, mainFragment, "mainFragment").commit();
     }
 
@@ -101,6 +103,7 @@ public class PolyvMainActivity extends FragmentActivity {
         mOrientation = getIntent().getIntExtra("orientation", PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE);
         mDefinition = getIntent().getIntExtra("definition", PolyvRTMPDefinition.GAO_QING);
         isBeautyOn = getIntent().getBooleanExtra("isBeautyOn", false);
+        isMirrorOnFromSettingPage = getIntent().getBooleanExtra("isMirrorOn", true);
     }
 
     private void initOrientation() {

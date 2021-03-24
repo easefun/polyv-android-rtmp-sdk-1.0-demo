@@ -160,6 +160,14 @@
                     android:src="@drawable/polyv_rtmp_main_iv_pressed_share" />
 
                 <ImageView
+                    android:id="@+id/iv_switch_mirror"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:src="@drawable/polyv_rtmp_main_iv_mirror_selector" />
+
+                <ImageView
                     android:id="@+id/iv_switchcamera"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"

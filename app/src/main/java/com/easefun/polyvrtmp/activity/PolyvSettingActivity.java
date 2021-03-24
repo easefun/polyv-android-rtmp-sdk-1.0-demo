@@ -45,8 +45,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private static final String LOGO_NAME = "polyvlivelogo";
     // logo
     private PolyvGrayImageView iv_logo;
-    private ImageView iv_portrait, iv_landscape, iv_sc, iv_hd, iv_sd, iv_public, iv_password, iv_pay, iv_rl_beauty_on, iv_rl_beauty_off;
-    private RelativeLayout rl_portrait, rl_landscape, rl_sc, rl_hd, rl_sd, rl_public, rl_password, rl_pay, rl_beauty_on, rl_beauty_off;
+    private ImageView iv_portrait, iv_landscape, iv_sc, iv_hd, iv_sd, iv_public, iv_password, iv_pay, iv_rl_beauty_on, iv_rl_beauty_off, iv_rl_mirror_on, iv_rl_mirror_off;
+    private RelativeLayout rl_portrait, rl_landscape, rl_sc, rl_hd, rl_sd, rl_public, rl_password, rl_pay, rl_beauty_on, rl_beauty_off, rl_mirror_on, rl_mirror_off;
     // 标题编辑框
     private EditText et_title;
     private TextView tv_count;
@@ -62,6 +62,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     private int mOrientation = PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE;
     private int mDefinition = PolyvRTMPDefinition.GAO_QING;
     private boolean isBeautyOn = true;
+    private boolean isMirrorOn = true;
     // 观看认证类型
     private String authType = PolyvAuthTypeSetting.AUTHTYPE_NONE;
     // 密码
@@ -124,6 +125,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         iv_pay = (ImageView) findViewById(R.id.iv_pay);
         iv_rl_beauty_on = findViewById(R.id.iv_rl_beauty_on);
         iv_rl_beauty_off = findViewById(R.id.iv_rl_beauty_off);
+        iv_rl_mirror_on = findViewById(R.id.iv_rl_mirror_on);
+        iv_rl_mirror_off = findViewById(R.id.iv_rl_mirror_off);
 
         rl_portrait = (RelativeLayout) findViewById(R.id.rl_portrait);
         rl_landscape = (RelativeLayout) findViewById(R.id.rl_landscape);
@@ -135,6 +138,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         rl_pay = (RelativeLayout) findViewById(R.id.rl_pay);
         rl_beauty_on = findViewById(R.id.rl_beauty_on);
         rl_beauty_off = findViewById(R.id.rl_beauty_off);
+        rl_mirror_on = findViewById(R.id.rl_mirror_on);
+        rl_mirror_off = findViewById(R.id.rl_mirror_off);
 
         iv_logo = (PolyvGrayImageView) findViewById(R.id.iv_logo);
         bt_start = (Button) findViewById(R.id.bt_start);
@@ -155,6 +160,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         rl_pay.setOnClickListener(this);
         rl_beauty_on.setOnClickListener(this);
         rl_beauty_off.setOnClickListener(this);
+        rl_mirror_on.setOnClickListener(this);
+        rl_mirror_off.setOnClickListener(this);
         iv_logo.setOnClickListener(this);
         bt_start.setOnClickListener(this);
         tv_logoff.setOnClickListener(this);
@@ -179,6 +186,7 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         resetDefinition(PolyvRTMPDefinition.GAO_QING);
         resetMode(PolyvRTMPOrientation.SCREEN_ORIENTATION_LANDSCAPE);
         resetBeauty(false);
+        resetMirror(true);
         iv_public.setSelected(true);
 
         final String logoPath = getSharedPreferences(LOGO_NAME, MODE_PRIVATE).getString(LOGO_NAME, null);
@@ -248,14 +256,25 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
     }
 
     private void resetBeauty(boolean beautyOn){
-        if (beautyOn){
+        if (beautyOn) {
             iv_rl_beauty_on.setVisibility(View.VISIBLE);
             iv_rl_beauty_off.setVisibility(View.GONE);
-        }else {
+        } else {
             iv_rl_beauty_off.setVisibility(View.VISIBLE);
             iv_rl_beauty_on.setVisibility(View.GONE);
         }
-        isBeautyOn=beautyOn;
+        isBeautyOn = beautyOn;
+    }
+
+    private void resetMirror(boolean mirrorOn) {
+        if (mirrorOn) {
+            iv_rl_mirror_on.setVisibility(View.VISIBLE);
+            iv_rl_mirror_off.setVisibility(View.GONE);
+        } else {
+            iv_rl_mirror_on.setVisibility(View.GONE);
+            iv_rl_mirror_off.setVisibility(View.VISIBLE);
+        }
+        isMirrorOn = mirrorOn;
     }
 
     private void resetPermission(final int permission) {
@@ -416,6 +435,12 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
             case R.id.rl_beauty_off:
                 resetBeauty(false);
                 break;
+            case R.id.rl_mirror_on:
+                resetMirror(true);
+                break;
+            case R.id.rl_mirror_off:
+                resetMirror(false);
+                break;
             case R.id.iv_logo:
                 // 待完善
 //                selectLogo();
@@ -450,7 +475,8 @@ public class PolyvSettingActivity extends Activity implements View.OnClickListen
         intent.putExtra("orientation", mOrientation);
         intent.putExtra("definition", mDefinition);
         intent.putExtra("avatarUrl", getIntent().getStringExtra("avatarUrl"));
-        intent.putExtra("isBeautyOn",isBeautyOn);
+        intent.putExtra("isBeautyOn", isBeautyOn);
+        intent.putExtra("isMirrorOn", isMirrorOn);
         startActivity(intent);
     }
 
